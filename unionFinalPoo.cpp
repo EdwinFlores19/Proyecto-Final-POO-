@@ -1554,6 +1554,15 @@ void login(){
 }
 
 
+void registroVentas(){
+	
+	DetalleVenta detalleVentas; //Crear obj
+	
+	return vectorDetalle.grabarEnArchivoDetalleC(detalleVentas);
+	
+}
+
+
 void menuDeOpciones()
 {
 	int rp;
@@ -1576,9 +1585,10 @@ void menuDeOpciones()
 						buscarClientes();
 				break;
 			case 2 :	system("cls");
-					//elegirVoucher();
-			//		menuDeOpcionesP();
-					////////////////////REGISTRO VENTAS
+					
+					//grabarEnArchivoDetalleC();
+					registroVentas();
+					
 				break;	
 			case 3 : 	cout<< "\t\t\t\t\t%%%%%%%%%%%%%%%%% %%%%%%%%%%%%%%%%%%\n"; 
 				exit(0);
@@ -1617,7 +1627,7 @@ void elAdmin(){
 					listarClientes();
 				break;
 			case 2 :	system("cls");
-			//		menuDeOpcionesP();
+					menuDeOpcionesP();
 				break;
 			case 3 :	system("cls");
 					menuDeOpcionesM();
@@ -1970,54 +1980,8 @@ void buscarClientes()
 	system("cls");
 }
 
-void generarVenta()
-{
-	int i;
-	string rpta;
-	int codProd;
-	int codVent;
-	int cant;
-	float subTotal;
-	float IGV;
-	
-	do{
-		cout << "\t\t\t\t\t Ingresar codigo del producto: "; cin >> codProd;
-		Producto prod = vectorProducto.buscarPorCodigo1(codProd);
+//Void de Ed
 
-		if(prod.getNombreP() !="Error")
-		{
-			cout << "\t\t\t\t\t -------------------------" << "\n";
-			cout << "\t\t\t\t\t Nombre del producto: " <<	prod.getNombreP() << "\n";
-			cout << "\t\t\t\t\t Marca del producto: " <<	prod.getMarca() << "\n";
-			cout << "\t\t\t\t\t Descripcion del producto: " <<	prod.getDescripcion() << "\n";
-			cout << "\t\t\t\t\t Precio del producto: S/." <<	prod.getPrecio() <<".0" << "\n";
-			cout << "\t\t\t\t\t -------------------------" << "\n";
-			cout << "\t\t\t\t\t Cantidad: "; cin >> cant;
-			subTotal = cant * prod.getPrecio();
-			
-			cout << "\t\t\t\t\t Subtotal: S/." << subTotal <<".0" << endl;
-			
-			///////////////////////////////////////////////////////////////////////////////////////////////////agregar total IGV
-			
-		}
-		else
-		{
-			cout << "\t\t\t\t\t ¡¡¡No se encontró el registro :( !!!" << endl;
-		}
-		cout << "\t\t\t\t\t ¿Añadir más? (Y / N): "; cin >> rpta;
-		cout << endl;
-	}
-	while(rpta == "y" || rpta == "Y");
-			
-			system ("pause");
-			system("cls");
-			menuDeOpciones();
-			
-}
-
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-//voids de edwin osiosi 
 
 void elegirVoucher()
 {	
@@ -2055,6 +2019,73 @@ void elegirVoucher()
 		}
 }
 
+
+//No Void de Ed
+
+void generarVenta()
+{
+	int i;
+	string rpta;
+	int codProd;
+	int codVent;
+	int cant;
+	float subTotal;
+	float IGV;
+	float Total;
+	
+	
+	do{
+		cout << "\t\t\t\t\t Ingresar codigo del producto: "; cin >> codProd;
+		Producto prod = vectorProducto.buscarPorCodigo1(codProd);
+
+		if(prod.getNombreP() !="Error")
+		{
+			cout << "\t\t\t\t\t -------------------------" << "\n";
+			cout << "\t\t\t\t\t Nombre del producto: " <<	prod.getNombreP() << "\n";
+			cout << "\t\t\t\t\t Marca del producto: " <<	prod.getMarca() << "\n";
+			cout << "\t\t\t\t\t Descripcion del producto: " <<	prod.getDescripcion() << "\n";
+			cout << "\t\t\t\t\t Precio del producto: S/." <<	prod.getPrecio() <<".0" << "\n";
+			cout << "\t\t\t\t\t -------------------------" << "\n";
+			cout << "\t\t\t\t\t Cantidad: "; cin >> cant;
+			subTotal = cant * prod.getPrecio();
+			
+			cout << "\t\t\t\t\t Subtotal: S/." << subTotal <<".0" << endl;
+			
+			IGV = subTotal * 0.18;
+			
+			cout << "\t\t\t\t\t Impuesto IGV: S/." << IGV <<".0" << endl;
+			
+			Total = subTotal + IGV;
+			
+			cout << "\t\t\t\t\t Total: S/." << Total <<".0" << endl;
+			
+			
+			
+			///////////////////////////////////////////////////////////////////////////////////////////////////agregar total IGV
+			
+		}
+		else
+		{
+			cout << "\t\t\t\t\t ¡¡¡No se encontró el registro :( !!!" << endl;
+		}
+		cout << "\t\t\t\t\t ¿Añadir más? (Y / N): "; cin >> rpta;
+		cout << endl;
+	}
+	while(rpta == "y" || rpta == "Y");
+			
+			system ("pause");
+			system("cls");
+			elegirVoucher();
+			
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+//voids de edwin osiosi 
+
+
+
 void generarBoleCli(){
 	
 	int nroCompr;
@@ -2066,7 +2097,7 @@ void generarBoleCli(){
 		
 		cout<<endl;
 		
-		//nroCompr = detalleVector.getCorrelativo();
+		nroCompr = vectorDetalle.getCorrelativo();
 		
 		cout<< "Nro Comprobante: " <<nroCompr << endl;
 		
@@ -2133,22 +2164,22 @@ void generarFactuCli(){
 		cout<<"============CLIENTE==============";
 		cout<<endl;
 		
-	//	nroCompr = detalleVector.getCorrelativo();
+		nroCompr = vectorDetalle.getCorrelativo();
 		
 		cout<< "Nro Comprobante: " <<nroCompr << endl;
 		
 		cout << "DNI: "; cin>> DNI;
 		cin.ignore();
 		
-	//	cout<<"Ingresar nombre: "; getline(cin, client);
+		//cout<<"Ingresar nombre: "; getline(cin, client);
 		
-	//	cout<<"Ingresar telefono: "; cin>>telf;
+		//cout<<"Ingresar telefono: "; cin>>telf;
 		
 		DetalleVenta detalleFactuCli; //Crear obj
 		
-	//	detalleFactuCli.getDni(dni);
-	//	detalleFactuCli.getNombreC(nom);
-	//	detalleFactuCli.getTelefono(telf);
+		detalleFactuCli.getDni();
+		detalleFactuCli.getNombreC();
+		detalleFactuCli.getTelefono();
 		
 		vectorDetalle.add(detalleFactuCli);//agregar estructu
 		vectorDetalle.grabarEnArchivoDetalleFactura(detalleFactuCli);
@@ -2176,7 +2207,7 @@ void generarFactuPro(){
 		
 			DetalleVenta detalleFactuPro; //Crear obj
 			
-		//	 detalleFactuPro.setNombreP(nom); //Poner()
+			// detalleFactuPro.setNombreP(); //Poner()
 			 detalleFactuPro.setPrecio(precio);
 			 detalleFactuPro.setStock(stock);
 			 
@@ -2192,4 +2223,5 @@ void generarFactuPro(){
 			void menuDeOpciones();
 	
 }
+
 
