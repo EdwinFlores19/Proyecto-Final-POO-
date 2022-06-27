@@ -13,8 +13,88 @@ using std::stoi;
 using namespace std;
 
 ////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
 //INICIO DE CLASES
 //////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
+
+
+//CLASE VENDEDOR 
+
+
+class Vendedor
+{
+	private:
+	int codigo;
+	string nombreM;
+	string usuario;
+	string contrasena;
+	string estado;
+	
+	public:
+	Vendedor(int cod, string nom, string usu, string contra, string esta)
+	{
+		this -> codigo = cod;
+		this -> nombreM = nom;
+		this -> usuario = usu;
+		this -> contrasena = contra;
+		this -> estado = esta;
+	}
+	Vendedor()
+	{
+		
+	}
+	~Vendedor()
+	{
+		
+	}
+	void setCodigo(int cod)
+	{
+		codigo = cod;
+	}
+	void setNombreM(string nom)
+	{
+		nombreM = nom;
+	}
+	void setUsuario(string usu)
+	{
+		usuario = usu;
+	}
+	void setContrasena(string contra)
+	{
+		contrasena = contra;
+	}
+	void setEstado(string esta)
+	{
+		estado = esta;
+	}
+		
+	int getCodigo()
+	{
+	return this->codigo;
+	}
+	string getNombreM()
+	{
+	return this->nombreM;
+	}
+	string getUsuario()
+	{
+	return this->usuario;
+	}
+	string getContrasena()
+	{
+	return this->contrasena;
+	}
+	string getEstado()
+	{
+	return this->estado;
+	}	
+};
+
+
+
+
+
 
 
 //CLASE CLIENTE
@@ -262,9 +342,187 @@ class DetalleVenta:public Venta1, public Producto, public Cliente{
 };
 
 
+
+
+////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////
 //INICIO DE VECTORES
 ///////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
+
+
+
+//VECTOR VENDEDOR 
+
+
+class VendedorVector
+{
+	private:
+		vector<Vendedor>vectorVendedor;
+	public:
+		VendedorVector()
+		{
+			cargarDatosDelArchivoAlVector();
+		}
+	int getCorrelativo()
+		{
+			if(vectorVendedor.size() == 0)
+			{
+				return 1;
+			}
+			else
+			{
+				return vectorVendedor[vectorVendedor.size() - 1].getCodigo() + 1;
+			}
+		}
+	void add(Vendedor obj) 
+		{
+			vectorVendedor.push_back(obj);
+		}
+	Vendedor get (int pos)
+		{
+			return vectorVendedor[pos];
+		}
+	int rows()
+		{	
+			return vectorVendedor.size();
+		}
+	Vendedor buscarPorCodigo1(int codigo)
+		{
+			Vendedor objError;
+			objError.setNombreM("Error");
+			for(Vendedor x:vectorVendedor)
+			{
+				if(codigo == x.getCodigo())
+				{
+					return x;
+				}
+			}
+			return objError;
+		}
+	Vendedor buscarPorCodigo2(int codigo)
+		{
+			for(int i=0;i<rows();i++)
+			{
+				if(codigo == get(i).getCodigo())
+				{
+					return get(i);
+				}
+			}
+		}
+	int getPostArray(Vendedor obj)
+		{
+			for(int i=0;i<rows();i++)
+			{
+				if(obj.getCodigo() == get(i).getCodigo())
+				{
+					return i;
+				}
+			}
+			return -1;
+		}
+	void remove(Vendedor obj)
+		{
+			vectorVendedor.erase(vectorVendedor.begin() + getPostArray(obj));
+		}		
+	bool modificar(Vendedor obj,string nom,string usu,string contra,string esta)
+		{
+			for(int i=0;i<rows();i++)
+			{
+				if(obj.getCodigo() == get(i).getCodigo())
+				{
+					vectorVendedor[i].setNombreM(nom);
+					vectorVendedor[i].setUsuario(usu);
+					vectorVendedor[i].setContrasena(contra);
+					vectorVendedor[i].setEstado(esta);
+					
+					return true;
+				}
+			}
+			return false;
+		}
+	void grabarEnArchivo(Vendedor vendedor)
+		{
+			try
+			{
+				fstream archivoVendedor;
+				archivoVendedor.open("vendedors.csv",ios::app);
+				if(archivoVendedor.is_open())
+				{
+					archivoVendedor<<vendedor.getCodigo()<<";"<<vendedor.getNombreM()<<";"<<vendedor.getUsuario()<<";"<<vendedor.getContrasena()<<";"<<vendedor.getEstado()<<";"<<endl;
+					archivoVendedor.close();
+				}
+			}
+			catch(exception e)
+			{
+				cout<<"¡¡¡Ocurrio un error al grabar el registro!!!";
+			}
+		}
+	void grabarModificarArchivo()
+		{
+			try
+			{
+				fstream archivoVendedors;
+				archivoVendedors.open("vendedors.csv",ios::out);
+				if(archivoVendedors.is_open())
+				{
+					for(Vendedor x : vectorVendedor)
+					{
+						archivoVendedors<<x.getCodigo()<<";"<<x.getNombreM()<<";"<<x.getUsuario()<<";"<<x.getContrasena()<<";"<<x.getEstado()<<";"<<"\n";	
+					}
+					archivoVendedors.close();
+				}
+			}
+			catch(exception e)
+			{
+				cout<<"¡¡¡Ocurrio un error al grabar en el archivo!!!";
+			}
+		}
+	void cargarDatosDelArchivoAlVector()
+		{
+			try
+			{
+				int i;
+				size_t 	posi; //Cantidad Maxima
+				string 	linea;
+				string 	temporal[5];  //Cantidad de Columnas
+				fstream archivoVendedor;
+				archivoVendedor.open("vendedors.csv",ios::in);
+				if(archivoVendedor.is_open())
+				{
+					while(!archivoVendedor.eof())
+					{
+						while(getline(archivoVendedor,linea))
+						{
+							i = 0;
+							while((posi = linea.find(";")) != string::npos)
+							{
+								temporal[i] = linea.substr(0,posi);
+								linea.erase(0,posi + 1);
+								i++;
+							}
+							//Crear un Objeto de Tipo Alumno
+							Vendedor vendedor;
+							vendedor.setCodigo(std::stoi(temporal[0]));
+							vendedor.setNombreM(temporal[1]);
+							vendedor.setUsuario(temporal[2]);
+							vendedor.setContrasena(temporal[3]);
+							vendedor.setEstado(temporal[4]);
+						
+							add(vendedor);
+						}
+					}
+				}
+				archivoVendedor.close();
+			}
+			catch(exception e)
+			{	
+				cout<<"¡¡¡Ocurrio un error al cargar en el archivo!!!";
+			}
+		}
+};
+
+
 
 //VECTOR CLIENTE 
 
@@ -795,21 +1053,28 @@ class DetalleVector{
 
 
 
-
-
-
+////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////
 //INICIO DE MAIN
-///////////////////////////////////////////////////////////////////
-
+////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
 
 //Crear un Objeto
+VendedorVector vendedorvector; /*Instancia de la clase*/
+
 ProductoVector productovector; /*Instancia de la clase*/
 
 
 ClienteVector vectorCliente;
 ProductoVector vectorProducto;
 DetalleVector vectorDetalle;
+
+//PrototiposVendedor
+void menuDeOpcionesM();
+void adicionarVendedor();
+void listarVendedores();
+void modificarVendedor();
+void buscarVendedor();
 
 //Prototipos producto
 void menuDeOpcionesP();
@@ -839,7 +1104,8 @@ void listarClientes();
 /*Titulo del programa*/
 void tituloPrincipal();
 
-
+/*Titulo del programa Vendedor*/
+void tituloPrincipalV();
 
 
 
@@ -1195,6 +1461,7 @@ void elegirUsuario()
 					login();
 				break;
 			case 2 :	system("cls");
+					
 					menuDeOpciones();
 				break;
 			case 3 : 	system("cls"); 
@@ -1226,7 +1493,7 @@ void login(){
 		cout<<"\t\t\t----------------"<<endl;
 		
 		cout<<"\tUsuario: ";
-		getline(cin,usuario)<<endl;
+		getline(cin, usuario);
 		
 		cout<<"\tPassword: ";
 		//getline(cin,password);
@@ -1353,7 +1620,7 @@ void elAdmin(){
 			//		menuDeOpcionesP();
 				break;
 			case 3 :	system("cls");
-					menuDeOpciones();
+					menuDeOpcionesM();
 				break;
 			case 4 :	system("cls");
 					menuDeOpciones();
@@ -1364,6 +1631,271 @@ void elAdmin(){
 			default : cout<<"	* INGRESE UN OPCION CORRECTA [1-3] *"<<endl;
 		}
 }
+
+
+
+
+
+
+
+
+
+
+
+//inicio de voids Vendedor
+void menuDeOpcionesM()
+{
+	//Declarar Variables
+	int cho;
+	do
+	{
+		tituloPrincipalV();
+		cout<<"\n"<<endl;
+ 		cout<<"\t\t\t\t\tREGISTRO DE VENDEDORES\n";
+ 		cout<<"\t\t\t***************************************************\n";
+ 		cout<<endl;
+		cout<<"\t\t\t- Ingresar Vendedor(a) 			[1]\n ";
+		cout<<"\t\t\t- Modificar Vendedor(a) 		[2]\n ";
+		cout<<"\t\t\t- Buscar Vendedor(a) 			[3]\n ";
+		cout<<"\t\t\t- Listar Vendedores  			[4]\n ";
+		cout<<"\t\t\t- Salir 		            	[5]\n ";
+		cout<<endl;
+		cout<<"\t\t\t***************************************************\n";
+		cout<<"\t\t\t- Ingrese solo una opción : 		[1 - 5]"<<endl;
+		cout<<"\t\t\t***************************************************\n";
+		cout<<"\t\t\t--> ";
+		cin>>(cho);
+		cout<<endl;	
+	switch(cho)
+		{
+			case 1: system("cls");
+					adicionarVendedor();
+					break;
+					
+			case 2:system("cls");
+					modificarVendedor();
+					break;
+					
+			case 3:system("cls");
+					buscarVendedor();
+					break;
+					
+			case 4: system ("cls");
+					listarVendedores();
+					break;
+					
+					cout<<endl;
+			case 5: cout <<"\t\t\t------------Muchas Gracias Por Tu Visita------------\n";
+					exit(0);
+					break;
+			default:cout<<"\t\t\t---------Ingresar una opción correcta [1-6]---------\n"<<endl;}
+	}
+	while(cho!=5);
+}
+	
+void adicionarVendedor()
+{
+	int cod; 
+	string nom;
+	string usu;
+	string contra; 
+	string esta;
+	string rpta;
+	
+	do
+	{
+		//Entrada de Datos
+		cod = vendedorvector.getCorrelativo();
+		tituloPrincipalV();
+		cout<<"\n"<<endl;
+		cout<<"\t\t\t\t*****************************************\n";		
+		cout<<"\t\t\t\t\t==> INGRESAR VENDEDOR(A) <==\n";
+		cout<<"\t\t\t\t*****************************************\n";
+		cout<<endl;
+		cout<<"\t\t\t\tCódigo ("<<cod<<")"<<endl;
+		cin.ignore();
+		
+		cout<<"\t\t\t\t- Ingresar Nombre de Vendedor(a) : ";
+		getline(cin,nom);
+		
+		cout<<"\t\t\t\t- Ingresar Usuario de Vendedor(a) : ";
+		getline(cin,usu);
+		
+		cout<<"\t\t\t\t- Ingresar Contrasena de Vendedor(a) : ";
+		getline(cin,contra);
+		
+		cout<<"\t\t\t\t- Ingresar Estado de Vendedor(a) : ";
+		cin>>esta;
+		cout<<endl;
+		
+		Vendedor vendedor; /*Crear el Objeto*/
+		
+		vendedor.setCodigo(cod);
+		vendedor.setNombreM(nom);
+		vendedor.setUsuario(usu);
+		vendedor.setContrasena(contra);
+		vendedor.setEstado(esta);
+
+		vendedorvector.add(vendedor); //Agregar el Objeto al Vector dinamico	
+		vendedorvector.grabarEnArchivo(vendedor);
+		
+		cout<<"\t\t\t*********************************************************\n";
+		cout<<"\t\t\t- Si usted desea continuar debe pulsar (YES o yes) : ";
+		cin>>rpta;
+		cout<<"\t\t\t*********************************************************\n";
+		system("cls"); //Limpiar	
+	}
+	while(rpta =="YES" || rpta =="yes");
+}
+
+void listarVendedores()//Listado
+	{
+		for(int i=0;i<vendedorvector.rows();i++)
+		{
+			cout<<"\n"<<endl;
+			cout<<"\t\t\t- El Código : "<<vendedorvector.get(i).getCodigo()<<"\n";
+			cout<<"\t\t\t- El Nombre : "<<vendedorvector.get(i).getNombreM()<<"\n";
+			cout<<"\t\t\t- El Usuario : "<<vendedorvector.get(i).getUsuario()<<"\n";
+			cout<<"\t\t\t- La Contrasena : "<<vendedorvector.get(i).getContrasena()<<"\n";
+			cout<<"\t\t\t- El Estado : "<<vendedorvector.get(i).getEstado()<<"\n";	
+			cout<<endl;
+		}
+		system("pause");
+		system("cls");
+}
+
+void modificarVendedor()
+{
+	int cod;
+		tituloPrincipalV();
+		cout<<"\n"<<endl;
+		cout<<"\t\t\t***********************************************************\n";
+		cout<<"\t\t\t- Ingrese el código del vendedor(a) que usted desea modificar : ";
+		cin>>cod;
+		cout<<"\t\t\t***********************************************************\n";
+		cout<<endl;
+	Vendedor objAModificar = vendedorvector.buscarPorCodigo1(cod);
+		cout<<"\t\t\t**************************************************\n";
+		cout<<"\t\t\t\t\tRegistro Encontrado\n";
+		cout<<"\t\t\t**************************************************\n";
+		cout<<"\t\t\t- El Código : "<<objAModificar.getCodigo()<<"\n";
+		cout<<"\t\t\t- El Nombre : "<<objAModificar.getNombreM()<<"\n";
+		cout<<"\t\t\t- El Usuario : "<<objAModificar.getUsuario()<<"\n";
+		cout<<"\t\t\t- La Contrasena : "<<objAModificar.getContrasena()<<"\n";
+		cout<<"\t\t\t- El Estado : "<<objAModificar.getEstado()<<"\n";
+		cin.ignore();
+		cout<<endl;
+		cout<<"\t\t\t**************************************************\n";
+		cout<<"\t\t\t\t\tModificar campos\n";
+		cout<<"\t\t\t**************************************************\n";
+		string nomModificado;
+		cout<<"\t\t\t- El Nuevo Nombre es :\n "; 
+		cout<<"\t\t\t"; getline(cin,nomModificado);
+		
+		string usuModificado;
+		cout<<"\t\t\t- El Nuevo Usuario es :\n "; 
+		cout<<"\t\t\t"; getline(cin,usuModificado);
+		
+		string contraModificado;
+		cout<<"\t\t\t- La Nueva Contraseña es :\n "; 
+		cout<<"\t\t\t"; getline(cin,contraModificado);
+		
+		string estaModificado;
+		cout<<"\t\t\t- El Nuevo Estado es :\n "; 
+		cout<<"\t\t\t"; getline(cin,estaModificado);
+	
+	bool estado = vendedorvector.modificar(objAModificar,nomModificado,usuModificado,contraModificado,estaModificado);
+		if(estado == true)
+			{
+				cout<<endl;
+				cout<<"\t\t\t------------------------------------------------\n";
+				cout<<"\t\t\t\tRegistro Modificado Exitosamente\n";
+				cout<<"\t\t\t------------------------------------------------\n";
+				cout<<endl;
+				/*Grabar en archivo*/
+				vendedorvector.grabarModificarArchivo();
+			}
+		else
+			{
+				cout<<endl;
+				cout<<"\t\t\t------------------------------------------------\n";
+				cout<<"\t\t\t\tNo se Logró Editar el Registro!!\n";
+				cout<<"\t\t\t------------------------------------------------\n";
+				cout<<endl;
+				system("pause");
+				menuDeOpcionesM();
+			}
+		system("pause");
+		system("cls");	
+}
+
+void buscarVendedor()
+{
+	int cod;
+		tituloPrincipalV();
+		cout<<"\n"<<endl;
+		cout<<"\t\t\t***************************************************\n";
+		cout<<"\t\t\t- Ingrese el código que usted desea buscar : ";
+		cin>>cod;
+		cout<<"\t\t\t***************************************************\n";
+		cout<<endl;
+
+	Vendedor pro = vendedorvector.buscarPorCodigo1(cod);
+	if(pro.getNombreM() != "Error")
+		{
+			cout<<"\t\t\t**************************************************\n";
+			cout<<"\t\t\t\t\tRegistro Encontrado\n";
+			cout<<"\t\t\t**************************************************\n";
+			cout<<"\t\t\t- Código : "<<pro.getCodigo()<<"\n";
+			cout<<"\t\t\t- Nombre : "<<pro.getNombreM()<<"\n";
+			cout<<"\t\t\t- Usuario : "<<pro.getUsuario()<<"\n";
+			cout<<"\t\t\t- Contrasena : "<<pro.getContrasena()<<"\n";
+			cout<<"\t\t\t- Estado : "<<pro.getEstado()<<"\n";
+		}
+	else
+		{
+			cout<<endl;
+			cout<<"\t\t\t------------------------------------------------\n";
+			cout <<"\t\t\t\tNo se encontró el registro!!!!!"<<endl;
+			cout<<"\t\t\t------------------------------------------------\n";
+			cout<<endl;
+		}
+		system("pause");
+		system("cls");
+		menuDeOpcionesM();
+}
+
+void tituloPrincipalV()
+{
+	int i;
+	cout<<"\n\t\t===================================================================\n";
+	cout<<"\t\t\t\t\tEMPRESA ventaMas\n";
+	cout<<"\t\t  Creación, eliminación, actualización, búsqueda, lista y reportes\n";
+	cout<<"\t\t\t\t\t Copyright 2022\n";
+	cout<<"\t\t===================================================================\n";
+ 
+	i = 0;
+	putchar('\n');
+	for (; i < 110; i++) {
+		putchar('_');
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//Fin de voids vendedor - entra clientes 
 
 void listarClientes(){
 	
