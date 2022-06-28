@@ -21,7 +21,6 @@ using namespace std;
 
 //CLASE VENDEDOR 
 
-
 class Vendedor
 {
 	private:
@@ -92,11 +91,6 @@ class Vendedor
 };
 
 
-
-
-
-
-
 //CLASE CLIENTE
 
 class Cliente
@@ -145,6 +139,8 @@ class Cliente
 			return this -> nombreC;
 		}
 };
+
+
 
 //CLASE PRODUCTO 
 
@@ -226,6 +222,7 @@ class Producto
 };
 
 
+
 //CLASE VENTA
 
 class Venta1
@@ -304,6 +301,8 @@ class Venta1
 	  
 };
 
+
+
 //CLASE DETALLE
 
 class DetalleVenta:public Venta1, public Producto, public Cliente{
@@ -343,7 +342,6 @@ class DetalleVenta:public Venta1, public Producto, public Cliente{
 
 
 
-
 ////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////
 //INICIO DE VECTORES
@@ -353,7 +351,6 @@ class DetalleVenta:public Venta1, public Producto, public Cliente{
 
 
 //VECTOR VENDEDOR 
-
 
 class VendedorVector
 {
@@ -455,7 +452,7 @@ class VendedorVector
 			}
 			catch(exception e)
 			{
-				cout<<"¡¡¡Ocurrio un error al grabar el registro!!!";
+				cout<<"Â¡Â¡Â¡Ocurrio un error al grabar el registro!!!";
 			}
 		}
 	void grabarModificarArchivo()
@@ -475,7 +472,7 @@ class VendedorVector
 			}
 			catch(exception e)
 			{
-				cout<<"¡¡¡Ocurrio un error al grabar en el archivo!!!";
+				cout<<"Â¡Â¡Â¡Ocurrio un error al grabar en el archivo!!!";
 			}
 		}
 	void cargarDatosDelArchivoAlVector()
@@ -517,7 +514,7 @@ class VendedorVector
 			}
 			catch(exception e)
 			{	
-				cout<<"¡¡¡Ocurrio un error al cargar en el archivo!!!";
+				cout<<"Â¡Â¡Â¡Ocurrio un error al cargar en el archivo!!!";
 			}
 		}
 };
@@ -623,8 +620,10 @@ class ClienteVector
 			}
 
 	};
+
+
 	
-	//VECTOR PRODUCTO 
+//VECTOR PRODUCTO 
 	
 	class ProductoVector
 {
@@ -727,7 +726,7 @@ class ClienteVector
 			}
 			catch(exception e)
 			{
-				cout<<"¡¡¡Ocurrio un error al grabar el registro!!!";
+				cout<<"Â¡Â¡Â¡Ocurrio un error al grabar el registro!!!";
 			}
 		}
 	void grabarModificarEliminarArchivo()
@@ -747,7 +746,7 @@ class ClienteVector
 			}
 			catch(exception e)
 			{
-				cout<<"¡¡¡Ocurrio un error al grabar en el archivo!!!";
+				cout<<"Â¡Â¡Â¡Ocurrio un error al grabar en el archivo!!!";
 			}
 		}
 	void cargarDatosDelArchivoAlVector()
@@ -790,10 +789,12 @@ class ClienteVector
 			}
 			catch(exception e)
 			{	
-				cout<<"¡¡¡Ocurrio un error al cargar en el archivo!!!";
+				cout<<"Â¡Â¡Â¡Ocurrio un error al cargar en el archivo!!!";
 			}
 		}
 };
+
+
 
 // VENTAVECTOR
 
@@ -810,7 +811,7 @@ class VentaVector
 			{
 				vectorVenta.push_back(obj);
 			}
-			Venta1 get(int pos) // Entregar el objeto actual, segun la posicion pasada como parámetro
+			Venta1 get(int pos) // Entregar el objeto actual, segun la posicion pasada como parÃ¡metro
 			{
 				return vectorVenta[pos];
 			}
@@ -885,6 +886,8 @@ class VentaVector
 				}
 			}
 	};
+
+
 			
 //VECTOR DETALLE
 
@@ -902,7 +905,7 @@ class DetalleVector{
 			vectorDetalle.push_back(obj);
 		}
 		
-		DetalleVenta get(int pos) // Entregar el objeto actual, segun la posicion pasada como parámetro
+		DetalleVenta get(int pos) // Entregar el objeto actual, segun la posicion pasada como parÃ¡metro
 		{
 			return vectorDetalle[pos];
 		}
@@ -923,7 +926,6 @@ class DetalleVector{
 				}
 				return -1;
 		}
-
 		
 		int getCorrelativo()
 			{
@@ -936,8 +938,7 @@ class DetalleVector{
 					return vectorDetalle[0].getNumComprobante() + 1;
 				}
 			}
-		
-			
+					
 		void grabarEnArchivoDetalleC(DetalleVenta detalleC)
 		{
 			try 
@@ -1007,8 +1008,7 @@ class DetalleVector{
 				cout<< "Ocurrio un error al grabar el registro :/";
 			}
 		}
-		
-		
+				
 		void grabarEnArchivoDetalleFactura(DetalleVenta detalleF)
 		{
 			try 
@@ -1050,14 +1050,12 @@ class DetalleVector{
 
 
 
-
-
-
 ////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////
 //INICIO DE MAIN
 ////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////
+
 
 //Crear un Objeto
 VendedorVector vendedorvector; /*Instancia de la clase*/
@@ -1112,32 +1110,25 @@ void elVendedor();
 
 
 
-
 //Login
 struct Persona {
 char nombre[8];
 char edad[8];
 };
 
-
 int main()
-{
-	
+{	
 	setlocale(LC_ALL,"spanish");  /*Permite imprimir caracteres con tilde*/
 	
-	elegirUsuario();
-	
-	
+	elegirUsuario();		
 }
 
 //FINAL DE MAIN
 
+
+
+
 //VOIDS PRODUCTO
-
-
-
-
-
 
 //inicio de voids
 void menuDeOpcionesP()
@@ -1159,7 +1150,7 @@ void menuDeOpcionesP()
 		cout<<"\t\t\t- Salir del Sistema			[6]\n ";
 		cout<<endl;
 		cout<<"\t\t\t***************************************************\n";
-		cout<<"\t\t\t- Ingrese solo una opción : 		[1 - 6]"<<endl;
+		cout<<"\t\t\t- Ingrese solo una opciÃ³n : 		[1 - 6]"<<endl;
 		cout<<"\t\t\t***************************************************\n";
 		cout<<"\t\t\t--> ";
 		cin>>(cho);
@@ -1190,7 +1181,7 @@ void menuDeOpcionesP()
 			case 6: cout <<"\t\t\t------------Muchas Gracias Por Tu Visita------------\n";
 					exit(0);
 					break;
-			default:cout<<"\t\t\t---------Ingresar una opción correcta [1-6]---------\n"<<endl;		
+			default:cout<<"\t\t\t---------Ingresar una opciÃ³n correcta [1-6]---------\n"<<endl;		
 		}
 	}
 	while(cho!=6);
@@ -1214,7 +1205,7 @@ void adicionarProducto()
 		cout<<"\t\t\t\t\t==> INGRESAR PRODUCTO <==\n";
 		cout<<"\t\t\t\t*****************************************\n";
 		cout<<endl;
-		cout<<"\t\t\t\tCódigo ("<<cod<<")"<<endl;
+		cout<<"\t\t\t\tCÃ³digo ("<<cod<<")"<<endl;
 		cin.ignore();
 		
 		cout<<"\t\t\t\t- Ingresar Nombre de Producto : ";
@@ -1223,7 +1214,7 @@ void adicionarProducto()
 		cout<<"\t\t\t\t- Ingresar Marca de Producto : ";
 		getline(cin,mar);
 		
-		cout<<"\t\t\t\t- Ingresar Descripción de Producto : ";
+		cout<<"\t\t\t\t- Ingresar DescripciÃ³n de Producto : ";
 		getline(cin,descri);
 		
 		cout<<"\t\t\t\t- Ingresar Precio de Producto : ";
@@ -1259,10 +1250,10 @@ void listarProductos()//Listado
 		for(int i=0;i<productovector.rows();i++)
 		{
 			cout<<"\n"<<endl;
-			cout<<"\t\t\t- El Código : "<<productovector.get(i).getCodigo()<<"\n";
+			cout<<"\t\t\t- El CÃ³digo : "<<productovector.get(i).getCodigo()<<"\n";
 			cout<<"\t\t\t- El Nombre : "<<productovector.get(i).getNombreP()<<"\n";
 			cout<<"\t\t\t- La Marca : "<<productovector.get(i).getMarca()<<"\n";
-			cout<<"\t\t\t- La Descripción : "<<productovector.get(i).getDescripcion()<<"\n";
+			cout<<"\t\t\t- La DescripciÃ³n : "<<productovector.get(i).getDescripcion()<<"\n";
 			cout<<"\t\t\t- El Precio : "<<productovector.get(i).getPrecio()<<"\n";	
 			cout<<"\t\t\t- El Stock (cantidad) : "<<productovector.get(i).getStock()<<"\n";
 			cout<<endl;
@@ -1277,7 +1268,7 @@ void eliminarProducto()
 		tituloPrincipal();
 		cout<<"\n"<<endl;
 		cout<<"\t\t\t***************************************************\n";
-		cout<<"\t\t\t\t- Ingresar el código a eliminar : ";
+		cout<<"\t\t\t\t- Ingresar el cÃ³digo a eliminar : ";
 		cin>>cod;
 		cout<<"\t\t\t***************************************************\n";
 		cout<<endl;
@@ -1292,7 +1283,7 @@ void eliminarProducto()
 			{
 		cout<<endl;
 		cout<<"\t\t\t---------------------------------------------------\n";		
-		cout<<"\t\t\t\t--> No se encontró el registro !!!! \n";
+		cout<<"\t\t\t\t--> No se encontrÃ³ el registro !!!! \n";
 		cout<<"\t\t\t---------------------------------------------------\n";
 		cout<<endl;
 			}
@@ -1307,7 +1298,7 @@ void modificarProducto()
 		tituloPrincipal();
 		cout<<"\n"<<endl;
 		cout<<"\t\t\t***************************************************\n";
-		cout<<"\t\t\t- Ingrese el código que usted desea modificar : ";
+		cout<<"\t\t\t- Ingrese el cÃ³digo que usted desea modificar : ";
 		cin>>cod;
 		cout<<"\t\t\t***************************************************\n";
 		cout<<endl;
@@ -1315,10 +1306,10 @@ void modificarProducto()
 		cout<<"\t\t\t**************************************************\n";
 		cout<<"\t\t\t\t\tRegistro Encontrado\n";
 		cout<<"\t\t\t**************************************************\n";
-		cout<<"\t\t\t- El Código : "<<objAModificar.getCodigo()<<"\n";
+		cout<<"\t\t\t- El CÃ³digo : "<<objAModificar.getCodigo()<<"\n";
 		cout<<"\t\t\t- El Nombre : "<<objAModificar.getNombreP()<<"\n";
 		cout<<"\t\t\t- La Marca : "<<objAModificar.getMarca()<<"\n";
-		cout<<"\t\t\t- La Descripción : "<<objAModificar.getDescripcion()<<"\n";
+		cout<<"\t\t\t- La DescripciÃ³n : "<<objAModificar.getDescripcion()<<"\n";
 		cout<<"\t\t\t- El Precio : "<<objAModificar.getPrecio()<<"\n";
 		cout<<"\t\t\t- El Stock : "<<objAModificar.getStock()<<"\n";
 		cin.ignore();
@@ -1335,7 +1326,7 @@ void modificarProducto()
 		cout<<"\t\t\t"; getline(cin,marModificado);
 		
 		string descriModificado;
-		cout<<"\t\t\t- La Nueva Descripción es :\n "; 
+		cout<<"\t\t\t- La Nueva DescripciÃ³n es :\n "; 
 		cout<<"\t\t\t"; getline(cin,descriModificado);
 		
 		float preModificado;
@@ -1361,7 +1352,7 @@ void modificarProducto()
 			{
 				cout<<endl;
 				cout<<"\t\t\t------------------------------------------------\n";
-				cout<<"\t\t\t\tNo se Logró Editar el Registro!!\n";
+				cout<<"\t\t\t\tNo se LogrÃ³ Editar el Registro!!\n";
 				cout<<"\t\t\t------------------------------------------------\n";
 				cout<<endl;
 				system("pause");
@@ -1377,7 +1368,7 @@ void buscarProducto()
 		tituloPrincipal();
 		cout<<"\n"<<endl;
 		cout<<"\t\t\t***************************************************\n";
-		cout<<"\t\t\t- Ingrese el código que usted desea buscar : ";
+		cout<<"\t\t\t- Ingrese el cÃ³digo que usted desea buscar : ";
 		cin>>cod;
 		cout<<"\t\t\t***************************************************\n";
 		cout<<endl;
@@ -1388,10 +1379,10 @@ void buscarProducto()
 			cout<<"\t\t\t**************************************************\n";
 			cout<<"\t\t\t\t\tRegistro Encontrado\n";
 			cout<<"\t\t\t**************************************************\n";
-			cout<<"\t\t\t- Código : "<<pro.getCodigo()<<"\n";
+			cout<<"\t\t\t- CÃ³digo : "<<pro.getCodigo()<<"\n";
 			cout<<"\t\t\t- Nombre : "<<pro.getNombreP()<<"\n";
 			cout<<"\t\t\t- Marca : "<<pro.getMarca()<<"\n";
-			cout<<"\t\t\t- Descripción : "<<pro.getDescripcion()<<"\n";
+			cout<<"\t\t\t- DescripciÃ³n : "<<pro.getDescripcion()<<"\n";
 			cout<<"\t\t\t- Precio : "<<pro.getPrecio()<<"\n";
 			cout<<"\t\t\t- Stock : "<<pro.getStock()<<"\n";
 		}
@@ -1399,7 +1390,7 @@ void buscarProducto()
 		{
 			cout<<endl;
 			cout<<"\t\t\t------------------------------------------------\n";
-			cout <<"\t\t\t\tNo se encontró el registro!!!!!"<<endl;
+			cout <<"\t\t\t\tNo se encontrÃ³ el registro!!!!!"<<endl;
 			cout<<"\t\t\t------------------------------------------------\n";
 			cout<<endl;
 		}
@@ -1413,7 +1404,7 @@ void tituloPrincipal()
 	int i;
 	cout<<"\n\t\t===================================================================\n";
 	cout<<"\t\t\t\t\tEMPRESA ventaMas\n";
-	cout<<"\t\t  Creación, eliminación, actualización, búsqueda, lista y reportes\n";
+	cout<<"\t\t  CreaciÃ³n, eliminaciÃ³n, actualizaciÃ³n, bÃºsqueda, lista y reportes\n";
 	cout<<"\t\t\t\t\t Copyright 2022\n";
 	cout<<"\t\t===================================================================\n";
  
@@ -1425,13 +1416,6 @@ void tituloPrincipal()
 }
 
 
-
-
-
-
-
-
-
 //////////////////////////////////////////////////////////////////////////////////////////////
 
 
@@ -1440,22 +1424,22 @@ void elegirUsuario()
 	int rp3;
 	
 		cout<<"\t\t\t	"<<endl;
-		cout<<"\t----------------------------------"<<endl;
+		cout<<"\n\t\t===================================================================\n";
+		cout<<"\t\t\t\t\tEMPRESA ventaMas\n";
+		cout<<"\t\t  CreaciÃ³n, eliminaciÃ³n, actualizaciÃ³n, bÃºsqueda, lista y reportes\n";
+		cout<<"\t\t\t\t\t Copyright 2022\n";
+		cout<<"\t\t===================================================================\n";
+		cout<<endl;
 		
-		cout<<"\t\t\tEMPRESA VentaMas!"<<endl;
-		cout<<"Creación, eliminación, actualización, búsqueda, lista y reportes"<<endl;
-		cout<<"\t\t\tCopyright 2022"<<endl;
+		cout<<"\t\t\t\t\tÂ¡BIENVENIDOS!"<<endl;
 		
-		cout<<"\t\t----------------------------------"<<endl;
-		cout<<"\t\t\t¡BIENVENIDOS!"<<endl;
-		
-		cout<<"\t\t----------------------------------"<<endl;
-		cout<<"\t\t -Administrador ....[1]"<<endl;
-		cout<<"\t\t -Vendedor .........[2]"<<endl;
-		cout<<"\t\t----------------------------------"<<endl;
-		cout<<"\t\t -Ingrese una opcion...[1-2]"<<endl;
-		cout<<"\t\t----------------------------------"<<endl;
-		cout << "\t	-->";
+		cout<<"\t\t\t\t----------------------------------"<<endl;
+		cout<<"\t\t\t\t- Administrador ....[1]"<<endl;
+		cout<<"\t\t\t\t- Vendedor .........[2]"<<endl;
+		cout<<"\t\t\t\t----------------------------------"<<endl;
+		cout<<"\t\t\t\t- Ingrese una opcion...[1-2]"<<endl;
+		cout<<"\t\t\t\t----------------------------------"<<endl;
+		cout << "\t\t\t\t-->";
 		cin>>rp3;
 		
 		switch(rp3)
@@ -1468,9 +1452,9 @@ void elegirUsuario()
 					//elVendedor(); dentro de loginV
 				break;
 			case 3 : 	system("cls"); 
-				cout<<"	* INGRESE UN OPCION CORRECTA [1-3] *"<<endl;	
+				cout<<" \t\t\t\t* INGRESE UN OPCION CORRECTA [1-3] *"<<endl;	
 				break; 
-			default : cout<<"	* INGRESE UN OPCION CORRECTA [1-3] *"<<endl;
+			default : cout<<" \t\t\t\t* INGRESE UN OPCION CORRECTA [1-3] *"<<endl;
 		}
 }
 
@@ -1492,17 +1476,19 @@ void login(){
 				
 		system("cls");
 	
-		cout<<"\t\t\tLOGIN DE USUARIO"<<endl;
-		cout<<"\t\t\t----------------"<<endl;
+		cout<<endl;
+		cout<<endl;
+		cout<<"\t\t\t\t\t LOGIN DE USUARIO"<<endl;
+		cout<<"\t\t\t\t\t ----------------"<<endl;
 		
 		cin.ignore();
 		
-		cout<<"\tUsuario: ";
+		cout<<"\t\t\t\t\t- Usuario: ";
 		getline(cin, usuario);
 		
 		
 		
-		cout<<"\tPassword: ";
+		cout<<"\t\t\t\t\t- Password: ";
 		//getline(cin,password);
 		char caracter;
 		caracter = getch();
@@ -1537,13 +1523,15 @@ void login(){
 		
 		if((usuario == p.nombre && password == p.edad)||
 		(usuario == p1.nombre && password == p1.edad)){
-			cout<<"\nUsuario y Contrasena CORRECTOS"<<endl;
+			cout<<"\n"<<endl;
+			cout<<"\t\t\t\t\nUsuario y/o Contrasena CORRECTOS"<<endl;
 			ingresa = true;
 			
 			elAdmin();
 			
 		}else if(contador<3){
-			cout<<"\nUsuario y/o Contrasena incorrectos"<<endl;
+			cout<<"\n"<<endl;
+			cout<<"\t\t\t\tUsuario y/o Contrasena INCORRECTOS"<<endl;
 			Sleep (1000);
 			//system("pause");
 		}
@@ -1553,11 +1541,12 @@ void login(){
 	}while(contador <3 && ingresa ==false);
 		
 	if(ingresa == false){
-		cout<<"\nNumero de intentos excedido.";
+		cout<<"\n"<<endl;
+		cout<<"\t\t\t\tÂ¡Â¡Â¡Â¡Â¡Â¡Â¡Â¡Numero de intentos excedido!!!!!!!!";
 	}else{
-		cout<<"\nTiene permiso para ingresar";
-	}
-	
+		cout<<"\n"<<endl;
+		cout<<"\t\t\t\tÂ¡Â¡Â¡Â¡Â¡Â¡Â¡Â¡Tiene permiso para ingresar!!!!!!!!";
+	}	
 }
 
 void loginV(){
@@ -1568,8 +1557,7 @@ void loginV(){
 	Persona p1 = { "Karen","9" };
 	salida.write((char*)&p1, sizeof(Persona));
 	salida.close();
-	
-	
+		
 	string usuario;
 	string password;
 	int contador = 0;
@@ -1578,17 +1566,19 @@ void loginV(){
 				
 		system("cls");
 	
-		cout<<"\t\t\tLOGIN DE USUARIO"<<endl;
-		cout<<"\t\t\t----------------"<<endl;
+		cout<<endl;
+		cout<<endl;
+		cout<<"\t\t\t\t\t LOGIN DE USUARIO"<<endl;
+		cout<<"\t\t\t\t\t ----------------"<<endl;
 		
 		cin.ignore();
 		
-		cout<<"\tUsuario: ";
+		cout<<"\t\t\t\t\t- Usuario: ";
 		getline(cin, usuario);
 		
 		
 		
-		cout<<"\tPassword: ";
+		cout<<"\t\t\t\t\t- Password: ";
 		//getline(cin,password);
 		char caracter;
 		caracter = getch();
@@ -1623,13 +1613,15 @@ void loginV(){
 		
 		if((usuario == p.nombre && password == p.edad)||
 		(usuario == p1.nombre && password == p1.edad)){
-			cout<<"\nUsuario y Contrasena CORRECTOS"<<endl;
+			cout<<"\n"<<endl;
+			cout<<"\t\t\t\t\nUsuario y/o Contrasena CORRECTOS"<<endl;
 			ingresa = true;
 			
 			elVendedor();
 			
 		}else if(contador<3){
-			cout<<"\nUsuario y/o Contrasena incorrectos"<<endl;
+			cout<<"\n"<<endl;
+			cout<<"\t\t\t\tUsuario y/o Contrasena INCORRECTOS"<<endl;
 			Sleep (1000);
 			//system("pause");
 		}
@@ -1639,30 +1631,29 @@ void loginV(){
 	}while(contador <3 && ingresa ==false);
 		
 	if(ingresa == false){
-		cout<<"\nNumero de intentos excedido.";
+		cout<<"\n"<<endl;
+		cout<<"\t\t\t\tÂ¡Â¡Â¡Â¡Â¡Â¡Â¡Â¡Numero de intentos excedido!!!!!!!!";
 	}else{
-		cout<<"\nTiene permiso para ingresar";
+		cout<<"\n"<<endl;
+		cout<<"\t\t\t\tÂ¡Â¡Â¡Â¡Â¡Â¡Â¡Â¡Tiene permiso para ingresar!!!!!!!!";
 	}
 	
 }
-
 
 void registroVentas(){
 	
 	DetalleVenta detalleVentas; //Crear obj
 	
-	return vectorDetalle.grabarEnArchivoDetalleC(detalleVentas);
-	
+	return vectorDetalle.grabarEnArchivoDetalleC(detalleVentas);	
 }
-
 
 void menuDeOpciones()
 {
 	int rp;
-	
 	do
 	{
 		cout << endl;
+		cout<<endl;
 		cout <<"\t\t\t\t\t-------------VENTAS-------------\n";
 		cout <<"\t\t\t\t\t================================\n";
 		cout << "\t\t\t\t\tREALIZAR VENTA(S)		...[1]\n";
@@ -1695,24 +1686,24 @@ void menuDeOpciones()
 void elAdmin(){
 	int rp4;
 	
-		cout<<"\t\t\t	"<<endl;
-		cout<<"\t----------------------------------"<<endl;
+		cout<<"\n\t\t===================================================================\n";
+		cout<<"\t\t\t\t\tEMPRESA ventaMas\n";
+		cout<<"\t\t  CreaciÃ³n, eliminaciÃ³n, actualizaciÃ³n, bÃºsqueda, lista y reportes\n";
+		cout<<"\t\t\t\t\t Copyright 2022\n";
+		cout<<"\t\t===================================================================\n";
+		cout<<endl;
 		
-		cout<<"\t\t\tEMPRESA VentaMas!"<<endl;
-		cout<<"Creación, eliminación, actualización, búsqueda, lista y reportes"<<endl;
-		cout<<"\t\t\tCopyright 2022"<<endl;
-		
-		cout<<"\t\t----------------------------------"<<endl;
-		cout<<"\t\t -REGISTRO DE CLIENTES .........[1]"<<endl;
-		cout<<"\t\t -REGISTRO DE PRODUCTOS ........[2]"<<endl;
-		cout<<"\t\t -REGISTRO DE VENDEDORES .......[3]"<<endl;
-		cout<<"\t\t -REGISTRO DE FACTURAS .........[4]"<<endl;
-		cout<<"\t\t -SALIR .........[5]"<<endl;
-		cout<<"\t\t----------------------------------"<<endl;
+		cout<<"\t\t\t- REGISTRO DE CLIENTES .........[1]"<<endl;
+		cout<<"\t\t\t- REGISTRO DE PRODUCTOS ........[2]"<<endl;
+		cout<<"\t\t\t- REGISTRO DE VENDEDORES .......[3]"<<endl;
+		cout<<"\t\t\t- REGISTRO DE FACTURAS .........[4]"<<endl;
+		cout<<"\t\t\t- SALIR .........[5]"<<endl;
+		cout<<"\t\t\t***************************************************\n";
 		cout<<"\t\t -Ingrese una opcion...[1-5]"<<endl;
-		cout<<"\t\t----------------------------------"<<endl;
+		cout<<"\t\t\t***************************************************\n";
 		cout << "\t	-->";
 		cin>>rp4;
+		cout<<endl;
 		
 		switch(rp4)
 		{
@@ -1731,31 +1722,29 @@ void elAdmin(){
 			case 5 : 	system("cls"); 
 				
 				break; 
-			default : cout<<"	* INGRESE UN OPCION CORRECTA [1-3] *"<<endl;
+			default : cout<<"\t\t\t\t* INGRESE UN OPCION CORRECTA [1-3] *"<<endl;
 		}
 }
-
-
 
 void elVendedor(){
 	int rp4;
 	
-		cout<<"\t\t\t	"<<endl;
-		cout<<"\t----------------------------------"<<endl;
+		cout<<"\n\t\t===================================================================\n";
+		cout<<"\t\t\t\t\tEMPRESA ventaMas\n";
+		cout<<"\t\t  CreaciÃ³n, eliminaciÃ³n, actualizaciÃ³n, bÃºsqueda, lista y reportes\n";
+		cout<<"\t\t\t\t\t Copyright 2022\n";
+		cout<<"\t\t===================================================================\n";
+		cout<<endl;
 		
-		cout<<"\t\t\tEMPRESA VentaMas!"<<endl;
-		cout<<"Creación, eliminación, actualización, búsqueda, lista y reportes"<<endl;
-		cout<<"\t\t\tCopyright 2022"<<endl;
-		
-		cout<<"\t\t----------------------------------"<<endl;
-		cout<<"\t\t -REGISTRO DE CLIENTES .........[1]"<<endl;
-		cout<<"\t\t -VENTA.........................[2]"<<endl;
-		cout<<"\t\t -SALIR .........[3]"<<endl;
-		cout<<"\t\t----------------------------------"<<endl;
+		cout<<"\t\t\t- REGISTRO DE CLIENTES .........[1]"<<endl;
+		cout<<"\t\t\t- VENTA.........................[2]"<<endl;
+		cout<<"\t\t\t- SALIR .........[3]"<<endl;
+		cout<<"\t\t\t***************************************************\n";
 		cout<<"\t\t -Ingrese una opcion...[1-3]"<<endl;
-		cout<<"\t\t----------------------------------"<<endl;
+		cout<<"\t\t\t***************************************************\n";
 		cout << "\t	-->";
 		cin>>rp4;
+		cout<<endl;
 		
 		switch(rp4)
 		{
@@ -1769,15 +1758,9 @@ void elVendedor(){
 			case 3 : 	system("cls"); 
 				
 				break; 
-			default : cout<<"	* INGRESE UN OPCION CORRECTA [1-3] *"<<endl;
+			default : cout<<"\t\t\t\t* INGRESE UN OPCION CORRECTA [1-3] *"<<endl;
 		}
 }
-
-
-
-
-
-
 
 
 
@@ -1800,7 +1783,7 @@ void menuDeOpcionesM()
 		cout<<"\t\t\t- Salir 		            	[5]\n ";
 		cout<<endl;
 		cout<<"\t\t\t***************************************************\n";
-		cout<<"\t\t\t- Ingrese solo una opción : 		[1 - 5]"<<endl;
+		cout<<"\t\t\t- Ingrese solo una opciÃ³n : 		[1 - 5]"<<endl;
 		cout<<"\t\t\t***************************************************\n";
 		cout<<"\t\t\t--> ";
 		cin>>(cho);
@@ -1827,7 +1810,7 @@ void menuDeOpcionesM()
 			case 5: cout <<"\t\t\t------------Muchas Gracias Por Tu Visita------------\n";
 					exit(0);
 					break;
-			default:cout<<"\t\t\t---------Ingresar una opción correcta [1-6]---------\n"<<endl;}
+			default:cout<<"\t\t\t---------Ingresar una opciÃ³n correcta [1-6]---------\n"<<endl;}
 	}
 	while(cho!=5);
 }
@@ -1851,7 +1834,7 @@ void adicionarVendedor()
 		cout<<"\t\t\t\t\t==> INGRESAR VENDEDOR(A) <==\n";
 		cout<<"\t\t\t\t*****************************************\n";
 		cout<<endl;
-		cout<<"\t\t\t\tCódigo ("<<cod<<")"<<endl;
+		cout<<"\t\t\t\tCÃ³digo ("<<cod<<")"<<endl;
 		cin.ignore();
 		
 		cout<<"\t\t\t\t- Ingresar Nombre de Vendedor(a) : ";
@@ -1892,7 +1875,7 @@ void listarVendedores()//Listado
 		for(int i=0;i<vendedorvector.rows();i++)
 		{
 			cout<<"\n"<<endl;
-			cout<<"\t\t\t- El Código : "<<vendedorvector.get(i).getCodigo()<<"\n";
+			cout<<"\t\t\t- El CÃ³digo : "<<vendedorvector.get(i).getCodigo()<<"\n";
 			cout<<"\t\t\t- El Nombre : "<<vendedorvector.get(i).getNombreM()<<"\n";
 			cout<<"\t\t\t- El Usuario : "<<vendedorvector.get(i).getUsuario()<<"\n";
 			cout<<"\t\t\t- La Contrasena : "<<vendedorvector.get(i).getContrasena()<<"\n";
@@ -1909,7 +1892,7 @@ void modificarVendedor()
 		tituloPrincipalV();
 		cout<<"\n"<<endl;
 		cout<<"\t\t\t***********************************************************\n";
-		cout<<"\t\t\t- Ingrese el código del vendedor(a) que usted desea modificar : ";
+		cout<<"\t\t\t- Ingrese el cÃ³digo del vendedor(a) que usted desea modificar : ";
 		cin>>cod;
 		cout<<"\t\t\t***********************************************************\n";
 		cout<<endl;
@@ -1917,7 +1900,7 @@ void modificarVendedor()
 		cout<<"\t\t\t**************************************************\n";
 		cout<<"\t\t\t\t\tRegistro Encontrado\n";
 		cout<<"\t\t\t**************************************************\n";
-		cout<<"\t\t\t- El Código : "<<objAModificar.getCodigo()<<"\n";
+		cout<<"\t\t\t- El CÃ³digo : "<<objAModificar.getCodigo()<<"\n";
 		cout<<"\t\t\t- El Nombre : "<<objAModificar.getNombreM()<<"\n";
 		cout<<"\t\t\t- El Usuario : "<<objAModificar.getUsuario()<<"\n";
 		cout<<"\t\t\t- La Contrasena : "<<objAModificar.getContrasena()<<"\n";
@@ -1936,7 +1919,7 @@ void modificarVendedor()
 		cout<<"\t\t\t"; getline(cin,usuModificado);
 		
 		string contraModificado;
-		cout<<"\t\t\t- La Nueva Contraseña es :\n "; 
+		cout<<"\t\t\t- La Nueva ContraseÃ±a es :\n "; 
 		cout<<"\t\t\t"; getline(cin,contraModificado);
 		
 		string estaModificado;
@@ -1958,7 +1941,7 @@ void modificarVendedor()
 			{
 				cout<<endl;
 				cout<<"\t\t\t------------------------------------------------\n";
-				cout<<"\t\t\t\tNo se Logró Editar el Registro!!\n";
+				cout<<"\t\t\t\tNo se LogrÃ³ Editar el Registro!!\n";
 				cout<<"\t\t\t------------------------------------------------\n";
 				cout<<endl;
 				system("pause");
@@ -1974,7 +1957,7 @@ void buscarVendedor()
 		tituloPrincipalV();
 		cout<<"\n"<<endl;
 		cout<<"\t\t\t***************************************************\n";
-		cout<<"\t\t\t- Ingrese el código que usted desea buscar : ";
+		cout<<"\t\t\t- Ingrese el cÃ³digo que usted desea buscar : ";
 		cin>>cod;
 		cout<<"\t\t\t***************************************************\n";
 		cout<<endl;
@@ -1985,7 +1968,7 @@ void buscarVendedor()
 			cout<<"\t\t\t**************************************************\n";
 			cout<<"\t\t\t\t\tRegistro Encontrado\n";
 			cout<<"\t\t\t**************************************************\n";
-			cout<<"\t\t\t- Código : "<<pro.getCodigo()<<"\n";
+			cout<<"\t\t\t- CÃ³digo : "<<pro.getCodigo()<<"\n";
 			cout<<"\t\t\t- Nombre : "<<pro.getNombreM()<<"\n";
 			cout<<"\t\t\t- Usuario : "<<pro.getUsuario()<<"\n";
 			cout<<"\t\t\t- Contrasena : "<<pro.getContrasena()<<"\n";
@@ -1995,7 +1978,7 @@ void buscarVendedor()
 		{
 			cout<<endl;
 			cout<<"\t\t\t------------------------------------------------\n";
-			cout <<"\t\t\t\tNo se encontró el registro!!!!!"<<endl;
+			cout <<"\t\t\t\tNo se encontrÃ³ el registro!!!!!"<<endl;
 			cout<<"\t\t\t------------------------------------------------\n";
 			cout<<endl;
 		}
@@ -2009,7 +1992,7 @@ void tituloPrincipalV()
 	int i;
 	cout<<"\n\t\t===================================================================\n";
 	cout<<"\t\t\t\t\tEMPRESA ventaMas\n";
-	cout<<"\t\t  Creación, eliminación, actualización, búsqueda, lista y reportes\n";
+	cout<<"\t\t  CreaciÃ³n, eliminaciÃ³n, actualizaciÃ³n, bÃºsqueda, lista y reportes\n";
 	cout<<"\t\t\t\t\t Copyright 2022\n";
 	cout<<"\t\t===================================================================\n";
  
@@ -2019,19 +2002,6 @@ void tituloPrincipalV()
 		putchar('_');
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 //Fin de voids vendedor - entra clientes 
@@ -2051,12 +2021,10 @@ void listarClientes(){
 	while(!archivoCliente.eof()){ //mientras no sea el final del archivo
 		
 		getline(archivoCliente,texto);
-		cout<<texto<<endl;
-		
+		cout<<texto<<endl;	
 	}
 		
-		archivoCliente.close();
-		
+		archivoCliente.close();		
 }
 
 void adicionarClientes()
@@ -2065,7 +2033,9 @@ void adicionarClientes()
 	int 	telf;
 	string 	nom;
 	string 	rpta;
-
+		
+		cout<<endl;
+		cout<<endl;
 		cout << "\t\t\t\t\t ---REGISTRAR NUEVO CLIENTE---" << "\n";	
 		cout << "DNI: "; cin >> dni;
 		cin.ignore();
@@ -2092,7 +2062,7 @@ void buscarClientes()
 	
 	if(client.getNombreC() != "Error")
 	{
-		cout << "\t\t\t\t\t   ¡¡¡Registro encontrado!!!" << endl;
+		cout << "\t\t\t\t\t Â¡Â¡Â¡Registro encontrado!!!" << endl;
 		cout << endl;
 		cout << "\t\t\t\t\t ***** BIENVENIDO/A " << client.getNombreC() <<" *****";
 		cout << endl;
@@ -2101,7 +2071,7 @@ void buscarClientes()
 	}
 	else
 	{
-		cout << "\t\t\t\t\t ¡¡¡No se encontró el registro :( !!!" << endl;
+		cout << "\t\t\t\t\t Â¡Â¡Â¡No se encontrÃ³ el registro :( !!!" << endl;
 		adicionarClientes();
 		generarVenta();
 	}
@@ -2109,19 +2079,20 @@ void buscarClientes()
 	system("cls");
 }
 
-//Void de Ed
 
+//Void de Ed
 
 void elegirVoucher()
 {	
 	int rp2;
 	
-		cout << "	=========================" << endl;
-		cout << "	BOLETA		...[1]" << endl;
-		cout << "	FACTURA		...[2]" << endl;
-		cout << "	Regresar 	...[3]" << endl;
-		cout << "	-->";
+			cout << "\t\t\t\t\t =========================" << endl;
+		cout << "\t\t\t\t\t- BOLETA		...[1]" << endl;
+		cout << "\t\t\t\t\t- FACTURA		...[2]" << endl;
+		cout << "\t\t\t\t\t- Regresar 	...[3]" << endl;
+		cout << "\t\t\t\t\t -->";
 		cin >> rp2;
+		cout<<endl;
 		
 		switch(rp2)
 		{
@@ -2144,9 +2115,10 @@ void elegirVoucher()
 			case 3 : 	system("cls"); 
 						void menuDeOpciones();
 				break; 
-			default : cout<<"	* INGRESE UN OPCION CORRECTA [1-3] *"<<endl;
+			default : cout<<"\t\t\t\t\t* INGRESE UN OPCION CORRECTA [1-3] *"<<endl;
 		}
 }
+
 
 
 //No Void de Ed
@@ -2187,17 +2159,14 @@ void generarVenta()
 			Total = subTotal + IGV;
 			
 			cout << "\t\t\t\t\t Total: S/." << Total <<".0" << endl;
-			
-			
-			
-			///////////////////////////////////////////////////////////////////////////////////////////////////agregar total IGV
-			
+						
+			///////////////////////////////////////////////////////////////////////////////////////////////////agregar total IGV			
 		}
 		else
 		{
-			cout << "\t\t\t\t\t ¡¡¡No se encontró el registro :( !!!" << endl;
+			cout << "\t\t\t\t\t Â¡Â¡Â¡No se encontrÃ³ el registro :( !!!" << endl;
 		}
-		cout << "\t\t\t\t\t ¿Añadir más? (Y / N): "; cin >> rpta;
+		cout << "\t\t\t\t\t Â¿AÃ±adir mÃ¡s? (Y / N): "; cin >> rpta;
 		cout << endl;
 	}
 	while(rpta == "y" || rpta == "Y");
@@ -2208,12 +2177,11 @@ void generarVenta()
 			
 }
 
-
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-//voids de edwin osiosi 
 
 
+//voids de ed 
 
 void generarBoleCli(){
 	
@@ -2222,20 +2190,20 @@ void generarBoleCli(){
 	int telf;
 	string nombreC;
 	
-		cout<<"============CLIENTE==============";
+		cout<<"\t\t\t\t\t============CLIENTE==============";
 		
 		cout<<endl;
 		
 		nroCompr = vectorDetalle.getCorrelativo();
 		
-		cout<< "Nro Comprobante: " <<nroCompr << endl;
+		cout<< "\t\t\t\t\t- Nro Comprobante: " <<nroCompr << endl;
 		
-		cout << "DNI: "; cin>> DNI;
+		cout << "\t\t\t\t\t- DNI: "; cin>> DNI;
 		cin.ignore();
 		
 		//cout<<"Ingresar nombre: "; getline(cin, client);
 		
-		cout<<"Ingresar telefono: "; cin>>telf;
+		cout<<"\t\t\t\t\t- Ingresar telefono: "; cin>>telf;
 		
 		DetalleVenta detalleBoleCli; //Crear obj 
 		
@@ -2255,16 +2223,18 @@ void generarBolePro(){
 	int stock;
 	string rpta1;
 	string rpta2;
-	
-		cout<<"============PRODUCTO==============";
+		
+		cout<<endl;
+		cout<<endl;
+		cout<<"\t\t\t\t\t============PRODUCTO==============";
 		cout<<endl;
 		
 		do{
-			cout << "Ingresar codigo: "; cin >> cod;
+			cout << "\t\t\t\t\t- Ingresar codigo: "; cin >> cod;
 		
-			cout << "Ingresar stock: "; cin >> stock;
+			cout << "\t\t\t\t\t- Ingresar stock: "; cin >> stock;
 				
-			cout << "¿Desea añadir mas productos? (Y/N): "; cin >> rpta1;
+			cout << "\t\t\t\t\t- Â¿Desea aÃ±adir mas productos? (Y/N): "; cin >> rpta1;
 		
 			DetalleVenta detalleBolePro; //Crear obj
 			
@@ -2277,7 +2247,7 @@ void generarBolePro(){
 		}
 		while(rpta1 == "Y" || rpta1 == "y");
 		
-		cout << "Compra finalizada" << endl;
+		cout << "\t\t\t\t\tCompra finalizada" << endl;
 		
 			system("pause"); 
 			system("cls");
@@ -2290,14 +2260,14 @@ void generarFactuCli(){
 	int telefono;
 	string nombreC;
 	
-		cout<<"============CLIENTE==============";
+		cout<<"\t\t\t\t\t============CLIENTE==============";
 		cout<<endl;
 		
 		nroCompr = vectorDetalle.getCorrelativo();
 		
-		cout<< "Nro Comprobante: " <<nroCompr << endl;
+		cout<< "\t\t\t\t\tNro Comprobante: " <<nroCompr << endl;
 		
-		cout << "DNI: "; cin>> DNI;
+		cout << "\t\t\t\t\tDNI: "; cin>> DNI;
 		cin.ignore();
 		
 		//cout<<"Ingresar nombre: "; getline(cin, client);
@@ -2323,16 +2293,16 @@ void generarFactuPro(){
 	string rpta1;
 	string rpta2;
 	
-		cout<<"============PRODUCTO==============";
+		cout<<"\t\t\t\t\t============PRODUCTO==============";
 		cout<<endl;
 		
 		do{
-			cout << "Ingresar codigo: "; cin >> cod;
+			cout << "\t\t\t\t\t- Ingresar codigo: "; cin >> cod;
 		
 		
-			cout << "Ingresar stock: "; cin >> stock;
+			cout << "\t\t\t\t\t- Ingresar stock: "; cin >> stock;
 				
-			cout << "¿Desea añadir mas productos? (Y/N): "; cin >> rpta1;
+			cout << "\t\t\t\t\t- Â¿Desea aÃ±adir mas productos? (Y/N): "; cin >> rpta1;
 		
 			DetalleVenta detalleFactuPro; //Crear obj
 			
@@ -2345,11 +2315,10 @@ void generarFactuPro(){
 		}
 		while(rpta1 == "Y" || rpta1 == "y");
 		
-		cout << "Compra finalizada" << endl;
+		cout << "\t\t\t\t\tCompra finalizada" << endl;
 		
 			system("pause"); 
 			system("cls");
 			void menuDeOpciones();
 	
 }
-
