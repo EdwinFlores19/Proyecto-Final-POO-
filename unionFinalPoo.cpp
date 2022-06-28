@@ -3,6 +3,7 @@
 #include <locale.h>
 #include <string>
 #include <cstring>
+#include <sstream>
 #include <windows.h>
 #include <conio.h>
 #include <fstream>
@@ -20,7 +21,6 @@ using namespace std;
 
 
 //CLASE VENDEDOR 
-
 
 class Vendedor
 {
@@ -92,11 +92,6 @@ class Vendedor
 };
 
 
-
-
-
-
-
 //CLASE CLIENTE
 
 class Cliente
@@ -145,6 +140,8 @@ class Cliente
 			return this -> nombreC;
 		}
 };
+
+
 
 //CLASE PRODUCTO 
 
@@ -226,6 +223,7 @@ class Producto
 };
 
 
+
 //CLASE VENTA
 
 class Venta1
@@ -304,6 +302,8 @@ class Venta1
 	  
 };
 
+
+
 //CLASE DETALLE
 
 class DetalleVenta:public Venta1, public Producto, public Cliente{
@@ -343,7 +343,6 @@ class DetalleVenta:public Venta1, public Producto, public Cliente{
 
 
 
-
 ////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////
 //INICIO DE VECTORES
@@ -353,7 +352,6 @@ class DetalleVenta:public Venta1, public Producto, public Cliente{
 
 
 //VECTOR VENDEDOR 
-
 
 class VendedorVector
 {
@@ -623,8 +621,10 @@ class ClienteVector
 			}
 
 	};
+
+
 	
-	//VECTOR PRODUCTO 
+//VECTOR PRODUCTO 
 	
 	class ProductoVector
 {
@@ -795,6 +795,8 @@ class ClienteVector
 		}
 };
 
+
+
 // VENTAVECTOR
 
 class VentaVector
@@ -885,6 +887,8 @@ class VentaVector
 				}
 			}
 	};
+
+
 			
 //VECTOR DETALLE
 
@@ -923,7 +927,6 @@ class DetalleVector{
 				}
 				return -1;
 		}
-
 		
 		int getCorrelativo()
 			{
@@ -936,8 +939,7 @@ class DetalleVector{
 					return vectorDetalle[0].getNumComprobante() + 1;
 				}
 			}
-		
-			
+					
 		void grabarEnArchivoDetalleC(DetalleVenta detalleC)
 		{
 			try 
@@ -946,8 +948,7 @@ class DetalleVector{
 				archivoDetalleC.open("detalle.csv", ios::app);
 				if (archivoDetalleC.is_open())
 				{
-					archivoDetalleC 
-										<< "Num de comprobante:" << ";" << detalleC.getNumComprobante() << "\n"
+					archivoDetalleC 	<< "Num de comprobante:" << ";" << detalleC.getNumComprobante() << "\n"
 										<< "Codigo" << ";" << detalleC.getCodigo() << "\n"
 										<< "Cod de Cliente:" << ";" << detalleC.getCodCli() << "\n"
 										<< "Cod de Vendedor:" << ";" << detalleC.getCodVen() << "\n"
@@ -979,12 +980,7 @@ class DetalleVector{
 				archivoDetalleP.open("soloboletas.csv", ios::app);
 				if (archivoDetalleP.is_open())
 				{
-					archivoDetalleP		<< "Detalle de boletas "<<endl<<
-										detalleB.getCodVen() << ";" <<
-										detalleB.getCodCli() << ";" <<
-										detalleB.getFecha()  << ";" <<
-										detalleB.getEstado() << ";" <<
-										detalleB.getTotal()  << ";" 
+					archivoDetalleP		<< "Detalle de boletas "<<endl
 										<< "Num de comprobante:" << ";" << detalleB.getNumComprobante() << "\n"
 										<< "Codigo" << ";" << detalleB.getCodigo() << "\n"
 										<< "Cod de Cliente:" << ";" << detalleB.getCodCli() << "\n"
@@ -1007,8 +1003,7 @@ class DetalleVector{
 				cout<< "Ocurrio un error al grabar el registro :/";
 			}
 		}
-		
-		
+				
 		void grabarEnArchivoDetalleFactura(DetalleVenta detalleF)
 		{
 			try 
@@ -1017,12 +1012,7 @@ class DetalleVector{
 				archivoDetalleP.open("solofacturas.csv", ios::app);
 				if (archivoDetalleP.is_open())
 				{
-					archivoDetalleP		<< "Detalle de facturas "<<endl<<
-										detalleF.getCodVen() << ";" <<
-										detalleF.getCodCli() << ";" <<
-										detalleF.getFecha()  << ";" <<
-										detalleF.getEstado() << ";" <<
-										detalleF.getTotal()  << ";" 
+					archivoDetalleP		<< "Detalle de facturas "<<endl
 										<< "Num de comprobante:" << ";" << detalleF.getNumComprobante() << "\n"
 										<< "Codigo" << ";" << detalleF.getCodigo() << "\n"
 										<< "Cod de Cliente:" << ";" << detalleF.getCodCli() << "\n"
@@ -1050,14 +1040,12 @@ class DetalleVector{
 
 
 
-
-
-
 ////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////
 //INICIO DE MAIN
 ////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////
+
 
 //Crear un Objeto
 VendedorVector vendedorvector; /*Instancia de la clase*/
@@ -1112,32 +1100,25 @@ void elVendedor();
 
 
 
-
 //Login
 struct Persona {
 char nombre[8];
 char edad[8];
 };
 
-
 int main()
-{
-	
+{	
 	setlocale(LC_ALL,"spanish");  /*Permite imprimir caracteres con tilde*/
 	
-	elegirUsuario();
-	
-	
+	elegirUsuario();		
 }
 
 //FINAL DE MAIN
 
+
+
+
 //VOIDS PRODUCTO
-
-
-
-
-
 
 //inicio de voids
 void menuDeOpcionesP()
@@ -1156,7 +1137,7 @@ void menuDeOpcionesP()
 		cout<<"\t\t\t- Modificar Producto 			[3]\n ";
 		cout<<"\t\t\t- Buscar Producto 			[4]\n ";
 		cout<<"\t\t\t- Listar Producto  			[5]\n ";
-		cout<<"\t\t\t- Salir del Sistema			[6]\n ";
+		cout<<"\t\t\t- Salir 						[6]\n ";
 		cout<<endl;
 		cout<<"\t\t\t***************************************************\n";
 		cout<<"\t\t\t- Ingrese solo una opción : 		[1 - 6]"<<endl;
@@ -1188,7 +1169,13 @@ void menuDeOpcionesP()
 					
 					cout<<endl;
 			case 6: cout <<"\t\t\t------------Muchas Gracias Por Tu Visita------------\n";
-					exit(0);
+			
+					system ("pause");
+					
+					system ("cls");
+			
+					elAdmin();
+				//	exit(0);
 					break;
 			default:cout<<"\t\t\t---------Ingresar una opción correcta [1-6]---------\n"<<endl;		
 		}
@@ -1425,13 +1412,6 @@ void tituloPrincipal()
 }
 
 
-
-
-
-
-
-
-
 //////////////////////////////////////////////////////////////////////////////////////////////
 
 
@@ -1440,22 +1420,23 @@ void elegirUsuario()
 	int rp3;
 	
 		cout<<"\t\t\t	"<<endl;
-		cout<<"\t----------------------------------"<<endl;
+		cout<<"\n\t\t===================================================================\n";
+		cout<<"\t\t\t\t\tEMPRESA ventaMas\n";
+		cout<<"\t\t  Creación, eliminación, actualización, búsqueda, lista y reportes\n";
+		cout<<"\t\t\t\t\t Copyright 2022\n";
+		cout<<"\t\t===================================================================\n";
+		cout<<endl;
 		
-		cout<<"\t\t\tEMPRESA VentaMas!"<<endl;
-		cout<<"Creación, eliminación, actualización, búsqueda, lista y reportes"<<endl;
-		cout<<"\t\t\tCopyright 2022"<<endl;
+		cout<<"\t\t\t\t\t¡BIENVENIDOS!"<<endl;
 		
-		cout<<"\t\t----------------------------------"<<endl;
-		cout<<"\t\t\t¡BIENVENIDOS!"<<endl;
-		
-		cout<<"\t\t----------------------------------"<<endl;
-		cout<<"\t\t -Administrador ....[1]"<<endl;
-		cout<<"\t\t -Vendedor .........[2]"<<endl;
-		cout<<"\t\t----------------------------------"<<endl;
-		cout<<"\t\t -Ingrese una opcion...[1-2]"<<endl;
-		cout<<"\t\t----------------------------------"<<endl;
-		cout << "\t	-->";
+		cout<<"\t\t\t\t----------------------------------"<<endl;
+		cout<<"\t\t\t\t- Administrador ....[1]"<<endl;
+		cout<<"\t\t\t\t- Vendedor .........[2]"<<endl;
+		cout<<"\t\t\t\t- SALIR ............[3]"<<endl;
+		cout<<"\t\t\t\t----------------------------------"<<endl;
+		cout<<"\t\t\t\t- Ingrese una opcion...[1-2]"<<endl;
+		cout<<"\t\t\t\t----------------------------------"<<endl;
+		cout << "\t\t\t\t-->";
 		cin>>rp3;
 		
 		switch(rp3)
@@ -1468,16 +1449,16 @@ void elegirUsuario()
 					//elVendedor(); dentro de loginV
 				break;
 			case 3 : 	system("cls"); 
-				cout<<"	* INGRESE UN OPCION CORRECTA [1-3] *"<<endl;	
+				cout<<" \t\t\t\t* GRACIAS POR SU VISITA!!!*"<<endl;	
 				break; 
-			default : cout<<"	* INGRESE UN OPCION CORRECTA [1-3] *"<<endl;
+			default : cout<<" \t\t\t\t* INGRESE UN OPCION CORRECTA [1-3] *"<<endl;
 		}
 }
 
 void login(){
 	ofstream salida;
 	salida.open("data.bin", ios::binary);
-	Persona p = {"Daniel","7" };
+	Persona p = {"admin","7654" };
 	salida.write((char*)&p, sizeof(Persona));
 	Persona p1 = { "Karina","43" };
 	salida.write((char*)&p1, sizeof(Persona));
@@ -1492,17 +1473,19 @@ void login(){
 				
 		system("cls");
 	
-		cout<<"\t\t\tLOGIN DE USUARIO"<<endl;
-		cout<<"\t\t\t----------------"<<endl;
+		cout<<endl;
+		cout<<endl;
+		cout<<"\t\t\t\t\t LOGIN DE USUARIO"<<endl;
+		cout<<"\t\t\t\t\t ----------------"<<endl;
 		
 		cin.ignore();
 		
-		cout<<"\tUsuario: ";
+		cout<<"\t\t\t\t\t- Usuario: ";
 		getline(cin, usuario);
 		
 		
 		
-		cout<<"\tPassword: ";
+		cout<<"\t\t\t\t\t- Password: ";
 		//getline(cin,password);
 		char caracter;
 		caracter = getch();
@@ -1537,13 +1520,19 @@ void login(){
 		
 		if((usuario == p.nombre && password == p.edad)||
 		(usuario == p1.nombre && password == p1.edad)){
-			cout<<"\nUsuario y Contrasena CORRECTOS"<<endl;
+			cout<<"\n"<<endl;
+			cout<<"\t\t\t\tUsuario y/o Contrasena CORRECTOS"<<endl;
 			ingresa = true;
+			
+			system("pause");
+			
+			system("cls");
 			
 			elAdmin();
 			
 		}else if(contador<3){
-			cout<<"\nUsuario y/o Contrasena incorrectos"<<endl;
+			cout<<"\n"<<endl;
+			cout<<"\t\t\t\tUsuario y/o Contrasena INCORRECTOS"<<endl;
 			Sleep (1000);
 			//system("pause");
 		}
@@ -1553,23 +1542,23 @@ void login(){
 	}while(contador <3 && ingresa ==false);
 		
 	if(ingresa == false){
-		cout<<"\nNumero de intentos excedido.";
+		cout<<"\n"<<endl;
+		cout<<"\t\t\t\t¡¡¡¡¡¡¡¡Numero de intentos excedido!!!!!!!!";
 	}else{
-		cout<<"\nTiene permiso para ingresar";
-	}
-	
+		cout<<"\n"<<endl;
+		cout<<"\t\t\t\t¡¡¡¡¡¡¡¡Tiene permiso para ingresar!!!!!!!!";
+	}	
 }
 
 void loginV(){
 	ofstream salida;
 	salida.open("data.bin", ios::binary);
-	Persona p = {"Dani","6" };
+	Persona p = {"userven","123" };
 	salida.write((char*)&p, sizeof(Persona));
 	Persona p1 = { "Karen","9" };
 	salida.write((char*)&p1, sizeof(Persona));
 	salida.close();
-	
-	
+		
 	string usuario;
 	string password;
 	int contador = 0;
@@ -1578,17 +1567,19 @@ void loginV(){
 				
 		system("cls");
 	
-		cout<<"\t\t\tLOGIN DE USUARIO"<<endl;
-		cout<<"\t\t\t----------------"<<endl;
+		cout<<endl;
+		cout<<endl;
+		cout<<"\t\t\t\t\t LOGIN DE USUARIO"<<endl;
+		cout<<"\t\t\t\t\t ----------------"<<endl;
 		
 		cin.ignore();
 		
-		cout<<"\tUsuario: ";
+		cout<<"\t\t\t\t\t- Usuario: ";
 		getline(cin, usuario);
 		
 		
 		
-		cout<<"\tPassword: ";
+		cout<<"\t\t\t\t\t- Password: ";
 		//getline(cin,password);
 		char caracter;
 		caracter = getch();
@@ -1623,13 +1614,19 @@ void loginV(){
 		
 		if((usuario == p.nombre && password == p.edad)||
 		(usuario == p1.nombre && password == p1.edad)){
-			cout<<"\nUsuario y Contrasena CORRECTOS"<<endl;
+			cout<<"\n"<<endl;
+			cout<<"\t\t\t\tUsuario y/o Contrasena CORRECTOS"<<endl;
 			ingresa = true;
+			
+			system("pause");
+			
+			system("cls");
 			
 			elVendedor();
 			
 		}else if(contador<3){
-			cout<<"\nUsuario y/o Contrasena incorrectos"<<endl;
+			cout<<"\n"<<endl;
+			cout<<"\t\t\t\tUsuario y/o Contrasena INCORRECTOS"<<endl;
 			Sleep (1000);
 			//system("pause");
 		}
@@ -1639,38 +1636,42 @@ void loginV(){
 	}while(contador <3 && ingresa ==false);
 		
 	if(ingresa == false){
-		cout<<"\nNumero de intentos excedido.";
+		cout<<"\n"<<endl;
+		cout<<"\t\t\t\t¡¡¡¡¡¡¡¡Numero de intentos excedido!!!!!!!!";
 	}else{
-		cout<<"\nTiene permiso para ingresar";
+		cout<<"\n"<<endl;
+		cout<<"\t\t\t\t¡¡¡¡¡¡¡¡Tiene permiso para ingresar!!!!!!!!";
 	}
 	
 }
-
 
 void registroVentas(){
 	
 	DetalleVenta detalleVentas; //Crear obj
 	
-	return vectorDetalle.grabarEnArchivoDetalleC(detalleVentas);
-	
+	return vectorDetalle.grabarEnArchivoDetalleC(detalleVentas);	
 }
-
 
 void menuDeOpciones()
 {
 	int rp;
-	
 	do
 	{
-		cout << endl;
-		cout <<"\t\t\t\t\t-------------VENTAS-------------\n";
-		cout <<"\t\t\t\t\t================================\n";
-		cout << "\t\t\t\t\tREALIZAR VENTA(S)		...[1]\n";
-		cout << "\t\t\t\t\tREGISTRO VENTA(S)		...[2]\n";
-		cout << "\t\t\t\t\tSALIR 			...[3]\n";
-		cout <<"\t\t\t\t\tIngrese una opcion 	...[1-3]:" << endl;
-		cout << "\t\t\t\t\t	-->";
+		cout<<endl;
+		cout<<endl;
+		cout<<"\t\t\t\t\t-------------VENTAS-------------\n";
+		cout<<"\t\t\t\t\t================================\n";
+		cout<<endl;
+		cout<<"\t\t\t\t\tREALIZAR VENTA(S)	...[1]\n";
+		cout<<"\t\t\t\t\tREGISTRO VENTA(S)	...[2]\n";
+		cout<<"\t\t\t\t\tSALIR 			...[3]\n";
+		cout<<endl;
+		cout<<"\t\t\t\t\t--------------------------------\n";
+		cout<<"\t\t\t\t\tIngrese una opcion 	...[1-3]:" << endl;
+		cout<<"\t\t\t\t\t--------------------------------\n";
+		cout<<"\t\t\t\t	-->";
 		cin>>rp;
+		cout<<endl;
 		
 		switch(rp)
 		{
@@ -1695,24 +1696,27 @@ void menuDeOpciones()
 void elAdmin(){
 	int rp4;
 	
-		cout<<"\t\t\t	"<<endl;
-		cout<<"\t----------------------------------"<<endl;
+		cout<<endl;
+		cout<<"\n\t\t===================================================================\n";
+		cout<<"\t\t\t\t\tEMPRESA ventaMas\n";
+		cout<<"\t\t  Creación, eliminación, actualización, búsqueda, lista y reportes\n";
+		cout<<"\t\t\t\t\t Copyright 2022\n";
+		cout<<"\t\t===================================================================\n";
+		cout<<endl;
 		
-		cout<<"\t\t\tEMPRESA VentaMas!"<<endl;
-		cout<<"Creación, eliminación, actualización, búsqueda, lista y reportes"<<endl;
-		cout<<"\t\t\tCopyright 2022"<<endl;
-		
-		cout<<"\t\t----------------------------------"<<endl;
-		cout<<"\t\t -REGISTRO DE CLIENTES .........[1]"<<endl;
-		cout<<"\t\t -REGISTRO DE PRODUCTOS ........[2]"<<endl;
-		cout<<"\t\t -REGISTRO DE VENDEDORES .......[3]"<<endl;
-		cout<<"\t\t -REGISTRO DE FACTURAS .........[4]"<<endl;
-		cout<<"\t\t -SALIR .........[5]"<<endl;
-		cout<<"\t\t----------------------------------"<<endl;
-		cout<<"\t\t -Ingrese una opcion...[1-5]"<<endl;
-		cout<<"\t\t----------------------------------"<<endl;
-		cout << "\t	-->";
+		cout<<"\t\t\t- REGISTRO DE CLIENTES .........[1]"<<endl;
+		cout<<"\t\t\t- REGISTRO DE PRODUCTOS ........[2]"<<endl;
+		cout<<"\t\t\t- REGISTRO DE VENDEDORES .......[3]"<<endl;
+		cout<<"\t\t\t- REGISTRO DE FACTURAS .........[4]"<<endl;
+		cout<<"\t\t\t- CERRAR SESIÓN.................[5]"<<endl;
+		cout<<endl;
+		cout<<"\t\t\t***************************************************\n";
+		cout<<"\t\t\t -Ingrese una opcion...........[1-5]"<<endl;
+		cout<<"\t\t\t***************************************************\n";
+		cout<<endl;
+		cout << "\t\t\t -->";
 		cin>>rp4;
+		cout<<endl;
 		
 		switch(rp4)
 		{
@@ -1729,33 +1733,32 @@ void elAdmin(){
 					menuDeOpciones();
 				break;
 			case 5 : 	system("cls"); 
-				
+				elegirUsuario();
 				break; 
-			default : cout<<"	* INGRESE UN OPCION CORRECTA [1-3] *"<<endl;
+			default : cout<<"\t\t\t\t* INGRESE UN OPCION CORRECTA [1-3] *"<<endl;
 		}
 }
-
-
 
 void elVendedor(){
 	int rp4;
 	
-		cout<<"\t\t\t	"<<endl;
-		cout<<"\t----------------------------------"<<endl;
+		cout<<"\n\t\t===================================================================\n";
+		cout<<"\t\t\t\t\tEMPRESA ventaMas\n";
+		cout<<"\t\t  Creación, eliminación, actualización, búsqueda, lista y reportes\n";
+		cout<<"\t\t\t\t\t Copyright 2022\n";
+		cout<<"\t\t===================================================================\n";
+		cout<<endl;
 		
-		cout<<"\t\t\tEMPRESA VentaMas!"<<endl;
-		cout<<"Creación, eliminación, actualización, búsqueda, lista y reportes"<<endl;
-		cout<<"\t\t\tCopyright 2022"<<endl;
-		
-		cout<<"\t\t----------------------------------"<<endl;
-		cout<<"\t\t -REGISTRO DE CLIENTES .........[1]"<<endl;
-		cout<<"\t\t -VENTA.........................[2]"<<endl;
-		cout<<"\t\t -SALIR .........[3]"<<endl;
-		cout<<"\t\t----------------------------------"<<endl;
-		cout<<"\t\t -Ingrese una opcion...[1-3]"<<endl;
-		cout<<"\t\t----------------------------------"<<endl;
-		cout << "\t	-->";
+		cout<<"\t\t\t\t- REGISTRO DE CLIENTES .........[1]"<<endl;
+		cout<<"\t\t\t\t- VENTA.........................[2]"<<endl;
+		cout<<"\t\t\t\t- CERRAR SESIÓN.................[3]"<<endl;
+		cout<<endl;
+		cout<<"\t\t\t***************************************************\n";
+		cout<<"\t\t\t -Ingrese una opcion...[1-3]"<<endl;
+		cout<<"\t\t\t***************************************************\n";
+		cout << "\t\t\t -->";
 		cin>>rp4;
+		cout<<endl;
 		
 		switch(rp4)
 		{
@@ -1767,17 +1770,11 @@ void elVendedor(){
 				break;
 
 			case 3 : 	system("cls"); 
-				
+				elegirUsuario();
 				break; 
-			default : cout<<"	* INGRESE UN OPCION CORRECTA [1-3] *"<<endl;
+			default : cout<<"\t\t\t\t* INGRESE UN OPCION CORRECTA [1-3] *"<<endl;
 		}
 }
-
-
-
-
-
-
 
 
 
@@ -2021,38 +2018,42 @@ void tituloPrincipalV()
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 //Fin de voids vendedor - entra clientes 
 
 void listarClientes(){
 	
 	ifstream archivoCliente;
-	string texto;
+	string linea;
+	char delimitador = ';';
+	
+	
 	
 	archivoCliente.open("cliente1.csv", ios::in); //Abrimos el archivo en modo lectura
+	
+	getline(archivoCliente, linea);
 	
 	if(archivoCliente.fail()){
 		cout<<"No se pudo abrir el archivo";
 		exit(1);
 	}
 	
-	while(!archivoCliente.eof()){ //mientras no sea el final del archivo
+	while(getline(archivoCliente,linea)){ //mientras no sea el final del archivo
 		
-		getline(archivoCliente,texto);
-		cout<<texto<<endl;
+		stringstream stream(linea);
+		string DNI, Telefono, Nombre;
 		
+		//Extraer valores de esa fila
+		
+		getline(stream, DNI, delimitador);
+		getline(stream, Telefono, delimitador);
+		getline(stream, Nombre, delimitador);
+		
+		//Imprimir
+		
+		cout<<"============================"<<endl;
+		cout<< "DNI: "<<DNI<<endl;
+		cout<< "Telefono: "<<Telefono<<endl;
+		cout<< "Nombre: "<<Nombre<<endl;
 	}
 		
 		archivoCliente.close();
@@ -2065,13 +2066,17 @@ void adicionarClientes()
 	int 	telf;
 	string 	nom;
 	string 	rpta;
-
-		cout << "\t\t\t\t\t ---REGISTRAR NUEVO CLIENTE---" << "\n";	
-		cout << "DNI: "; cin >> dni;
+		
+		cout<<endl;
+		cout<<endl;
+		cout << "\t\t\t\t\t -----REGISTRAR NUEVO CLIENTE-----" << "\n";	
+		cout << "\t\t\t\t\t- DNI: "; cin >> dni;
 		cin.ignore();
-		cout << "\t\t\t\t\t Ingresar nombre: "; getline(cin, nom);
-		cout << "\t\t\t\t\t Ingresar telefono: "; cin >> telf;
+		cout << "\t\t\t\t\t- Ingresar nombre: "; getline(cin, nom);
+		cout << "\t\t\t\t\t- Ingresar telefono: "; cin >> telf;
 		cout << endl;
+		cout<<endl;
+		cout << "\t\t\t\t\t ==================================" << "\n";
 		
 		Cliente cliente;
 		
@@ -2087,21 +2092,27 @@ void adicionarClientes()
 void buscarClientes()
 {
 	int dni;
-	cout << "\t\t\t\t\t INGRESAR DNI: "; cin >> dni;
+	cout<<endl;
+	cout<<endl;
+	cout<< "\t\t\t\t\t  INGRESAR EL DNI: "; cin>>dni;
+	cout<<endl;
 	Cliente client = vectorCliente.buscarPorDNI(dni);
 	
 	if(client.getNombreC() != "Error")
 	{
-		cout << "\t\t\t\t\t   ¡¡¡Registro encontrado!!!" << endl;
+		cout<<endl;
+		cout << "\t\t\t\t\t ¡¡¡Registro encontrado!!!" << endl;
 		cout << endl;
-		cout << "\t\t\t\t\t ***** BIENVENIDO/A " << client.getNombreC() <<" *****";
+		cout<<"\t\t\t-------------------------------------------------------------\n";
+		cout << "\t\t\t\t\t ***** BIENVENIDO/A " << client.getNombreC() <<" *****\n";
+		cout<<"\t\t\t-------------------------------------------------------------\n";
 		cout << endl;
 		cout << endl;
 		generarVenta();
 	}
 	else
 	{
-		cout << "\t\t\t\t\t ¡¡¡No se encontró el registro :( !!!" << endl;
+		cout << "\t\t\t\t ¡¡¡No se encontró el registro :( !!!" << endl;
 		adicionarClientes();
 		generarVenta();
 	}
@@ -2109,19 +2120,25 @@ void buscarClientes()
 	system("cls");
 }
 
-//Void de Ed
 
+//Void de Ed
 
 void elegirVoucher()
 {	
 	int rp2;
-	
-		cout << "	=========================" << endl;
-		cout << "	BOLETA		...[1]" << endl;
-		cout << "	FACTURA		...[2]" << endl;
-		cout << "	Regresar 	...[3]" << endl;
-		cout << "	-->";
+		cout<<endl;
+		cout<<endl;
+		cout << "\t\t\t\t\t =============================" << endl;
+		cout << "\t\t\t\t\t- BOLETA		...[1]" << endl;
+		cout << "\t\t\t\t\t- FACTURA		...[2]" << endl;
+		cout<<endl;
+		cout << "\t\t\t\t\t =============================" << endl;
+		cout << "\t\t\t\t\t- Regresar 		...[3]" << endl;
+		cout << "\t\t\t\t\t =============================" << endl;
+		cout<<endl;
+		cout << "\t\t\t\t\t --> ";
 		cin >> rp2;
+		cout<<endl;
 		
 		switch(rp2)
 		{
@@ -2144,9 +2161,10 @@ void elegirVoucher()
 			case 3 : 	system("cls"); 
 						void menuDeOpciones();
 				break; 
-			default : cout<<"	* INGRESE UN OPCION CORRECTA [1-3] *"<<endl;
+			default : cout<<"\t\t\t\t\t* INGRESE UN OPCION CORRECTA [1-3] *"<<endl;
 		}
 }
+
 
 
 //No Void de Ed
@@ -2169,36 +2187,37 @@ void generarVenta()
 
 		if(prod.getNombreP() !="Error")
 		{
-			cout << "\t\t\t\t\t -------------------------" << "\n";
-			cout << "\t\t\t\t\t Nombre del producto: " <<	prod.getNombreP() << "\n";
-			cout << "\t\t\t\t\t Marca del producto: " <<	prod.getMarca() << "\n";
-			cout << "\t\t\t\t\t Descripcion del producto: " <<	prod.getDescripcion() << "\n";
-			cout << "\t\t\t\t\t Precio del producto: S/." <<	prod.getPrecio() <<".0" << "\n";
-			cout << "\t\t\t\t\t -------------------------" << "\n";
-			cout << "\t\t\t\t\t Cantidad: "; cin >> cant;
+			cout<<endl;
+			cout<< "\t\t\t\t\t ---------------------------------" << "\n";
+			cout<< "\t\t\t\t\t- Nombre del producto: " <<	prod.getNombreP() << "\n";
+			cout<< "\t\t\t\t\t- Marca del producto: " <<	prod.getMarca() << "\n";
+			cout<< "\t\t\t\t\t- Descripcion del producto: " <<	prod.getDescripcion() << "\n";
+			cout<< "\t\t\t\t\t- Precio del producto: S/." <<	prod.getPrecio() <<".0" << "\n";
+			cout<< "\t\t\t\t\t ---------------------------------" << "\n";
+			cout<<endl;
+			cout<< "\t\t\t\t\t- Cantidad: "; cin >> cant;
+			cout<<endl;
 			subTotal = cant * prod.getPrecio();
 			
-			cout << "\t\t\t\t\t Subtotal: S/." << subTotal <<".0" << endl;
+			cout << "\t\t\t\t\t- Subtotal: S/." << subTotal <<".0" << endl;
 			
 			IGV = subTotal * 0.18;
 			
-			cout << "\t\t\t\t\t Impuesto IGV: S/." << IGV <<".0" << endl;
+			cout << "\t\t\t\t\t- Impuesto IGV: S/." << IGV <<".0" << endl;
 			
 			Total = subTotal + IGV;
 			
-			cout << "\t\t\t\t\t Total: S/." << Total <<".0" << endl;
-			
-			
-			
-			///////////////////////////////////////////////////////////////////////////////////////////////////agregar total IGV
-			
+			cout << "\t\t\t\t\t- Total: S/." << Total <<".0" << endl;
+						
+			///////////////////////////////////////////////////////////////////////////////////////////////////agregar total IGV			
 		}
 		else
 		{
 			cout << "\t\t\t\t\t ¡¡¡No se encontró el registro :( !!!" << endl;
 		}
-		cout << "\t\t\t\t\t ¿Añadir más? (Y / N): "; cin >> rpta;
-		cout << endl;
+		cout<<endl;
+		cout<<"\t\t\t\t\t ¿Añadir más? (Y / N): "; cin >> rpta;
+		cout<<endl;
 	}
 	while(rpta == "y" || rpta == "Y");
 			
@@ -2208,12 +2227,11 @@ void generarVenta()
 			
 }
 
-
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-//voids de edwin osiosi 
 
 
+//voids de ed 
 
 void generarBoleCli(){
 	
@@ -2221,21 +2239,23 @@ void generarBoleCli(){
 	int DNI;
 	int telf;
 	string nombreC;
-	
-		cout<<"============CLIENTE==============";
+		
+		cout<<endl;
+		cout<<endl;
+		cout<<"\t\t\t\t\t=============CLIENTE==============";
 		
 		cout<<endl;
 		
 		nroCompr = vectorDetalle.getCorrelativo();
 		
-		cout<< "Nro Comprobante: " <<nroCompr << endl;
+		cout<< "\t\t\t\t\t- Nro Comprobante: " <<nroCompr << endl;
 		
-		cout << "DNI: "; cin>> DNI;
+		cout << "\t\t\t\t\t- DNI: "; cin>> DNI;
 		cin.ignore();
 		
 		//cout<<"Ingresar nombre: "; getline(cin, client);
 		
-		cout<<"Ingresar telefono: "; cin>>telf;
+		cout<<"\t\t\t\t\t- Ingresar telefono: "; cin>>telf;
 		
 		DetalleVenta detalleBoleCli; //Crear obj 
 		
@@ -2255,16 +2275,18 @@ void generarBolePro(){
 	int stock;
 	string rpta1;
 	string rpta2;
-	
-		cout<<"============PRODUCTO==============";
+		
+		cout<<endl;
+		cout<<endl;
+		cout<<"\t\t\t\t\t============PRODUCTO==============";
 		cout<<endl;
 		
 		do{
-			cout << "Ingresar codigo: "; cin >> cod;
+			cout << "\t\t\t\t\t- Ingresar codigo: "; cin >> cod;
 		
-			cout << "Ingresar stock: "; cin >> stock;
+			cout << "\t\t\t\t\t- Ingresar stock: "; cin >> stock;
 				
-			cout << "¿Desea añadir mas productos? (Y/N): "; cin >> rpta1;
+			cout << "\t\t\t\t\t- ¿Desea añadir mas productos? (Y/N): "; cin >> rpta1;
 		
 			DetalleVenta detalleBolePro; //Crear obj
 			
@@ -2277,7 +2299,7 @@ void generarBolePro(){
 		}
 		while(rpta1 == "Y" || rpta1 == "y");
 		
-		cout << "Compra finalizada" << endl;
+		cout << "\t\t\t\t\tCompra finalizada" << endl;
 		
 			system("pause"); 
 			system("cls");
@@ -2289,15 +2311,17 @@ void generarFactuCli(){
 	int DNI;
 	int telefono;
 	string nombreC;
-	
-		cout<<"============CLIENTE==============";
+		
+		cout<<endl;
+		cout<<endl;
+		cout<<"\t\t\t\t\t============CLIENTE==============";
 		cout<<endl;
 		
 		nroCompr = vectorDetalle.getCorrelativo();
 		
-		cout<< "Nro Comprobante: " <<nroCompr << endl;
+		cout<< "\t\t\t\t\t- Nro Comprobante: " <<nroCompr << endl;
 		
-		cout << "DNI: "; cin>> DNI;
+		cout << "\t\t\t\t\t- DNI: "; cin>> DNI;
 		cin.ignore();
 		
 		//cout<<"Ingresar nombre: "; getline(cin, client);
@@ -2322,17 +2346,19 @@ void generarFactuPro(){
 	int stock;
 	string rpta1;
 	string rpta2;
-	
-		cout<<"============PRODUCTO==============";
+		
+		cout<<endl;
+		cout<<endl;
+		cout<<"\t\t\t\t\t============PRODUCTO==============";
 		cout<<endl;
 		
 		do{
-			cout << "Ingresar codigo: "; cin >> cod;
+			cout << "\t\t\t\t\t- Ingresar codigo: "; cin >> cod;
 		
 		
-			cout << "Ingresar stock: "; cin >> stock;
+			cout << "\t\t\t\t\t- Ingresar stock: "; cin >> stock;
 				
-			cout << "¿Desea añadir mas productos? (Y/N): "; cin >> rpta1;
+			cout << "\t\t\t\t\t- ¿Desea añadir mas productos? (Y/N): "; cin >> rpta1;
 		
 			DetalleVenta detalleFactuPro; //Crear obj
 			
@@ -2345,11 +2371,10 @@ void generarFactuPro(){
 		}
 		while(rpta1 == "Y" || rpta1 == "y");
 		
-		cout << "Compra finalizada" << endl;
+		cout << "\t\t\t\t\tCompra finalizada" << endl;
 		
 			system("pause"); 
 			system("cls");
 			void menuDeOpciones();
 	
 }
-
