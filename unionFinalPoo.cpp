@@ -1107,6 +1107,9 @@ void tituloPrincipal();
 /*Titulo del programa Vendedor*/
 void tituloPrincipalV();
 
+void loginV();
+void elVendedor();
+
 
 
 
@@ -1461,8 +1464,8 @@ void elegirUsuario()
 					login();
 				break;
 			case 2 :	system("cls");
-					
-					menuDeOpciones();
+					loginV();
+					//elVendedor(); dentro de loginV
 				break;
 			case 3 : 	system("cls"); 
 				cout<<"	* INGRESE UN OPCION CORRECTA [1-3] *"<<endl;	
@@ -1538,6 +1541,92 @@ void login(){
 			ingresa = true;
 			
 			elAdmin();
+			
+		}else if(contador<3){
+			cout<<"\nUsuario y/o Contrasena incorrectos"<<endl;
+			Sleep (1000);
+			//system("pause");
+		}
+	}
+	
+	salida.close();
+	}while(contador <3 && ingresa ==false);
+		
+	if(ingresa == false){
+		cout<<"\nNumero de intentos excedido.";
+	}else{
+		cout<<"\nTiene permiso para ingresar";
+	}
+	
+}
+
+void loginV(){
+	ofstream salida;
+	salida.open("data.bin", ios::binary);
+	Persona p = {"Dani","6" };
+	salida.write((char*)&p, sizeof(Persona));
+	Persona p1 = { "Karen","9" };
+	salida.write((char*)&p1, sizeof(Persona));
+	salida.close();
+	
+	
+	string usuario;
+	string password;
+	int contador = 0;
+	bool ingresa = false;
+	do{
+				
+		system("cls");
+	
+		cout<<"\t\t\tLOGIN DE USUARIO"<<endl;
+		cout<<"\t\t\t----------------"<<endl;
+		
+		cin.ignore();
+		
+		cout<<"\tUsuario: ";
+		getline(cin, usuario);
+		
+		
+		
+		cout<<"\tPassword: ";
+		//getline(cin,password);
+		char caracter;
+		caracter = getch();
+		password = "";
+		
+		while(caracter != 13){
+			
+			if(caracter != 8){
+				password.push_back(caracter);
+				cout<<"*";	
+			}
+			else{
+				if(password.length()>0){
+					cout<<"\b \b";
+					password = password.substr(0, password.length()-1);
+				}	
+				
+			}
+			
+			
+			caracter = getch();
+		}
+		
+		contador++;
+		
+		Persona p;
+		ifstream entrada;
+		entrada.open("data.bin", ios::binary);
+		
+		
+	if(entrada.read((char*)&p, sizeof(Persona))){
+		
+		if((usuario == p.nombre && password == p.edad)||
+		(usuario == p1.nombre && password == p1.edad)){
+			cout<<"\nUsuario y Contrasena CORRECTOS"<<endl;
+			ingresa = true;
+			
+			elVendedor();
 			
 		}else if(contador<3){
 			cout<<"\nUsuario y/o Contrasena incorrectos"<<endl;
@@ -1647,6 +1736,42 @@ void elAdmin(){
 }
 
 
+
+void elVendedor(){
+	int rp4;
+	
+		cout<<"\t\t\t	"<<endl;
+		cout<<"\t----------------------------------"<<endl;
+		
+		cout<<"\t\t\tEMPRESA VentaMas!"<<endl;
+		cout<<"Creación, eliminación, actualización, búsqueda, lista y reportes"<<endl;
+		cout<<"\t\t\tCopyright 2022"<<endl;
+		
+		cout<<"\t\t----------------------------------"<<endl;
+		cout<<"\t\t -REGISTRO DE CLIENTES .........[1]"<<endl;
+		cout<<"\t\t -VENTA.........................[2]"<<endl;
+		cout<<"\t\t -SALIR .........[3]"<<endl;
+		cout<<"\t\t----------------------------------"<<endl;
+		cout<<"\t\t -Ingrese una opcion...[1-3]"<<endl;
+		cout<<"\t\t----------------------------------"<<endl;
+		cout << "\t	-->";
+		cin>>rp4;
+		
+		switch(rp4)
+		{
+			case 1 : 	system("cls");	
+					listarClientes();
+				break;
+			case 2 :	system("cls");
+					menuDeOpciones();
+				break;
+
+			case 3 : 	system("cls"); 
+				
+				break; 
+			default : cout<<"	* INGRESE UN OPCION CORRECTA [1-3] *"<<endl;
+		}
+}
 
 
 
