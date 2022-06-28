@@ -1492,8 +1492,12 @@ void login(){
 		cout<<"\t\t\tLOGIN DE USUARIO"<<endl;
 		cout<<"\t\t\t----------------"<<endl;
 		
+		cin.ignore();
+		
 		cout<<"\tUsuario: ";
 		getline(cin, usuario);
+		
+		
 		
 		cout<<"\tPassword: ";
 		//getline(cin,password);
@@ -1532,6 +1536,9 @@ void login(){
 		(usuario == p1.nombre && password == p1.edad)){
 			cout<<"\nUsuario y Contrasena CORRECTOS"<<endl;
 			ingresa = true;
+			
+			elAdmin();
+			
 		}else if(contador<3){
 			cout<<"\nUsuario y/o Contrasena incorrectos"<<endl;
 			Sleep (1000);
@@ -1548,9 +1555,6 @@ void login(){
 		cout<<"\nTiene permiso para ingresar";
 	}
 	
-	
-	
-	elAdmin();
 }
 
 
@@ -2223,5 +2227,4 @@ void generarFactuPro(){
 			void menuDeOpciones();
 	
 }
-
 
